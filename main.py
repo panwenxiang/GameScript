@@ -41,7 +41,9 @@ for imgName in os.listdir(batchImportPath):
 
     hh1, ww1 = imgTemplateReadGray.shape[:2]
     # scale = [0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2]
-    scale = [0.9, 0.95, 0.98, 0.99, 1, 1.01, 1.02, 1.05, 1.1]
+    # scale = [0.9, 0.95, 0.98, 0.99, 1, 1.01, 1.02, 1.05, 1.1]
+    # 模板图缩放比例
+    scale = [0.98, 1, 1.02]
     for sl in scale:
         scaledTemplateImg = cv2.resize(imgTemplateReadGray, (int(hh1 * sl), int(ww1 * sl)))
 
