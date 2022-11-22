@@ -1,6 +1,8 @@
 import os
 import cv2
 import numpy as np
+import win32gui
+
 
 # 模板匹配
 imgBottomList = ["img/bottomImg/1.png", "img/bottomImg/2.png", "img/bottomImg/3.png", "img/bottomImg/4.png"]
