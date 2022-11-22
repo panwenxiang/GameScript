@@ -37,12 +37,12 @@ def get_screenshot(handle, is_gray=None):
         img = screen.grabWindow(handle).toImage()
 
         # Qimage转ndarray(我日泥马的格式转化方法搞了我半天)
-        imgz = qimage2ndarray.rgb_view(img)
+        img_z = qimage2ndarray.rgb_view(img)
 
-        imgz = cv2.cvtColor(imgz, cv2.COLOR_BGR2RGB)  # BGR转RGB
+        img_z = cv2.cvtColor(img_z, cv2.COLOR_BGR2RGB)  # BGR转RGB
         if is_gray:
-            imgz = cv2.cvtColor(imgz, cv2.COLOR_BGR2GRAY)  # BGR转灰度
-        return imgz
+            img_z = cv2.cvtColor(img_z, cv2.COLOR_BGR2GRAY)  # BGR转灰度
+        return img_z
 
     # 窗口放到最上层
     # win32gui.SetWindowPos(handle, win32con.HWND_TOPMOST, 0, 0, 1200, 800, win32con.SWP_SHOWWINDOW)

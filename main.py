@@ -3,27 +3,28 @@ import cv2
 import numpy as np
 
 
-# 模板匹配
-imgBottomList = ["img/bottomImg/1.png", "img/bottomImg/2.png", "img/bottomImg/3.png", "img/bottomImg/4.png"]
-imgTemplateList = ["img/template/1.png", "img/template/2.png", "img/template/3.png", "img/template/4.png",
-                   "img/template/5.png", "img/template/6.png", "img/template/77.png"]
-
-# 读取图片
-imgBottom = cv2.imread(imgBottomList[1])
-imgTemplate = cv2.imread(imgTemplateList[4])
-imgTemplate6 = cv2.imread(imgTemplateList[5])
+# # 模板匹配
+# imgBottomList = ["img/bottomImg/1.png", "img/bottomImg/2.png", "img/bottomImg/3.png", "img/bottomImg/4.png"]
+# imgTemplateList = ["img/template/1.png", "img/template/2.png", "img/template/3.png", "img/template/4.png",
+#                    "img/template/5.png", "img/template/6.png", "img/template/77.png"]
+#
+# # 读取图片
+# imgBottom = cv2.imread(imgBottomList[1])
+# imgTemplate = cv2.imread(imgTemplateList[4])
+# imgTemplate6 = cv2.imread(imgTemplateList[5])
 
 
 # 转灰度图片
-imgBottomGray = cv2.cvtColor(imgBottom, cv2.COLOR_BGR2GRAY)
-imgTemplateGray = cv2.cvtColor(imgTemplate, cv2.COLOR_BGR2GRAY)
-imgTemplate6Gray = cv2.cvtColor(imgTemplate6, cv2.COLOR_BGR2GRAY)
+# imgBottomGray = cv2.cvtColor(imgBottom, cv2.COLOR_BGR2GRAY)
+# imgTemplateGray = cv2.cvtColor(imgTemplate, cv2.COLOR_BGR2GRAY)
+# imgTemplate6Gray = cv2.cvtColor(imgTemplate6, cv2.COLOR_BGR2GRAY)
 
 # 测试缩放
 # hh1, ww1 = imgTemplateGray.shape[0:2]
 # bf = 0.95
 # new_cat = cv2.resize(imgTemplateGray, (int(ww1 * bf), int(hh1 * bf)))
 # cv2.imshow("ceshi", new_cat)
+
 
 # 获取模板图片的宽高
 imgH, imgW = imgTemplate.shape[0:2]
