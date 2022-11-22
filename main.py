@@ -14,6 +14,7 @@ imgBottom = cv2.imread(imgBottomList[1])
 imgTemplate = cv2.imread(imgTemplateList[4])
 imgTemplate6 = cv2.imread(imgTemplateList[5])
 
+
 # 转灰度图片
 imgBottomGray = cv2.cvtColor(imgBottom, cv2.COLOR_BGR2GRAY)
 imgTemplateGray = cv2.cvtColor(imgTemplate, cv2.COLOR_BGR2GRAY)
