@@ -1,7 +1,6 @@
 import os
 import cv2
 import numpy as np
-import win32gui
 
 
 # 模板匹配

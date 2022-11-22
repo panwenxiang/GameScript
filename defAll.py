@@ -1,9 +1,7 @@
-import os
 import cv2
-import win32gui, win32con, win32api
+import win32gui
 from PyQt5.QtWidgets import QApplication
 import sys
-import numpy as np
 import qimage2ndarray
 
 
