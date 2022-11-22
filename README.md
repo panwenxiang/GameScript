@@ -9,6 +9,7 @@ pip install -r requirements.txt
 
 ### 设置源-解决pip速度慢的问题：
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
 pip config set install.trusted-host mirrors.aliyun.com
 
 

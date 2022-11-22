@@ -1,7 +1,7 @@
 import cv2
 import defAll
 
-handle = defAll.get_window('企业微信')
+handle = defAll.get_window('夜神模拟器')
 print('获取的句柄:', handle, hex(eval(str(handle))))
 
 if handle:

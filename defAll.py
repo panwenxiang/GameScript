@@ -32,7 +32,7 @@ def get_screenshot(handle):
         imgz = qimage2ndarray.rgb_view(img)
 
         imgz = cv2.cvtColor(imgz, cv2.COLOR_BGR2RGB)  # BGR转RGB
-        imgz = cv2.cvtColor(imgz, cv2.COLOR_BGR2GRAY)  # BGR转灰度
+        # imgz = cv2.cvtColor(imgz, cv2.COLOR_BGR2GRAY)  # BGR转灰度
         return imgz
 
     # 窗口放到最上层
