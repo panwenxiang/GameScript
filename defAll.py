@@ -15,7 +15,7 @@ def get_handle(name):
         # 返回句柄handle
         return handle
 
-
+# 设置位置与z顺序
 def set_window(handle, uFlags):
     win32gui.SetWindowPos(handle, win32con.HWND_TOP, 0, 0, 596, 1020, uFlags)
     # 夜神 0, 0, 596, 1020
@@ -25,11 +25,11 @@ def set_window(handle, uFlags):
 def get_screenshot(handle, is_gray=None):
     if handle:
         # 打开窗口，得保持窗口是打开状态
-        set_window(handle, win32con.SWP_NOMOVE)
+        # set_window(handle, win32con.SWP_NOMOVE)
 
         # 获取坐标
-        (x1, y1, x2, y2) = win32gui.GetWindowRect(handle)
-        print(x1, y1, x2, y2)
+        # (x1, y1, x2, y2) = win32gui.GetWindowRect(handle)
+        # print(x1, y1, x2, y2)
 
         # Qt5截图
         app = QApplication(sys.argv)
@@ -48,3 +48,12 @@ def get_screenshot(handle, is_gray=None):
     # win32gui.SetWindowPos(handle, win32con.HWND_TOPMOST, 0, 0, 1200, 800, win32con.SWP_SHOWWINDOW)
     # 获取坐标
     # (x1, y1, x2, y2) = win32gui.GetWindowRect(handle)
+
+
+def test_lcation(handle, x, y):
+    img = get_screenshot(handle)
+    cv2.rectangle(img, (x, y), (x+10, y+10), (0, 255, 0), 2)
+    cv2.imshow('test', img)
+    cv2.waitKey(0)
+
+
