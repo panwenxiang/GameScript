@@ -5,7 +5,10 @@ import cv2
 from datetime import datetime
 wait_time = 0.5
 
+# 输入窗口名
 handle = defAll.get_handle('夜神模拟器')
+# 输入需要测序的星级装备图片的文件夹地址
+template_address = "img/template/3level/"
 
 if handle:
     print('已找到句柄:', handle)
@@ -23,7 +26,7 @@ if handle:
 
     for number in range(1, 102):
         # 模板匹配
-        match_result = defAll.template_all_search(handle)
+        match_result = defAll.template_all_search(handle, template_address)
         # time.sleep(2)
         if match_result['is_found']:
             defAll.click_imitate(handle, match_result['center_x'], match_result['center_y']+defAll.margin_top, wait_time)

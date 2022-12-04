@@ -3,6 +3,11 @@ import defAll
 
 # 填入测序数组，模板： sq_list = [1, 2, 8, 33]
 sq_list_no_change = [35, 62]
+# 输入推序需要熔掉的装备的文件夹地址
+template_address = "img/template/3level/"
+# 输入窗口名
+handle = defAll.get_handle('夜神模拟器')
+print('句柄', handle)
 
 npc_xy = {'x': 0, 'y': 0}
 furnace_xy = {'x': 0, 'y': 0}
@@ -30,7 +35,7 @@ def fuse():
         first = False
         for _ in range(10):
             defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
-    match_result = defAll.template_all_search(handle)
+    match_result = defAll.template_all_search(handle, template_address)
     if match_result['is_found']:
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
         defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 选择按钮
@@ -38,8 +43,6 @@ def fuse():
         defAll.click_imitate(handle, 480, 950, 0.1)  # 点击返回
 
 
-handle = defAll.get_handle('大号')
-print('句柄', handle)
 if handle:
 
     # 找出铃铛或剑的坐标

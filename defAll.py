@@ -60,7 +60,7 @@ def test_lcation(handle, x, y):
 
 
 # 模板匹配，找到模板return，找不到点下一页就递归调用自身匹配，当没有下一页时return
-def template_all_search(handle):
+def template_all_search(handle, batch_import_path):
     img_bottom = get_screenshot(handle)
     # h, w = imgBottom.shape[:2]
     # imgr = imgBottom[int(h*0.5):int(h*0.8), 0:int(w)]
@@ -68,7 +68,7 @@ def template_all_search(handle):
     img_bottom = img_bottom[margin_top:800, 0:596]
     # img_bottom_gray = cv2.cvtColor(img_bottom, cv2.COLOR_BGR2GRAY)
     # batch_import_path = "img/imgTest/"
-    batch_import_path = "img/template/"
+    # batch_import_path = "img/template/"
     is_found = False  # 是否找到了模板
     for imgName in os.listdir(batch_import_path):
         img_template_read = cv2.imread(batch_import_path + imgName)  # 读
@@ -118,7 +118,7 @@ def template_all_search(handle):
             # 翻页后等0.5秒才翻页好
             click_imitate(handle, match_next['center_x'], match_next['center_y'] + margin_top, sleep_next)
 
-            return template_all_search(handle)
+            return template_all_search(handle, batch_import_path)
         else:
             print('没有下一页了', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
             return {'is_found': False}
