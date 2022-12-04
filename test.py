@@ -28,12 +28,11 @@ from datetime import datetime
 # test_list.append(8)
 # print(22, test_list)
 
-a = [2, 5, 2]
-print(a)
-del(a[0])
-raise NameError("count设置错误")
-print(a)
 
+hd = defAll.get_handle('夜神模拟器')
+defAll.test_lcation(hd, 98, 274+480)
+# defAll.click_imitate(handle, 480, 950, 0.4)  # 点击右下角魔法书
+# defAll.click_imitate(handle, 480, 360, 0.1)  # 点击水系
 
 # handle = defAll.get_handle('4截取视频.avi')
 handle = ''

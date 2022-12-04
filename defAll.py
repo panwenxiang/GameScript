@@ -52,11 +52,11 @@ def get_screenshot(handle, is_gray=None):
 
 
 # 给出点击点的坐标测试截图
-# def test_lcation(handle, x, y):
-#     img = get_screenshot(handle)
-#     cv2.rectangle(img, (x, y), (x + 10, y + 10), (0, 255, 0), 2)
-#     cv2.imshow('test', img)
-#     cv2.waitKey(0)
+def test_lcation(handle, x, y):
+    img = get_screenshot(handle)
+    cv2.rectangle(img, (x, y), (x + 10, y + 10), (0, 255, 0), 2)
+    cv2.imshow('test', img)
+    cv2.waitKey(0)
 
 
 # 模板匹配，找到模板return，找不到点下一页就递归调用自身匹配，当没有下一页时return
@@ -67,7 +67,7 @@ def template_all_search(handle):
     # 距离顶部
     img_bottom = img_bottom[margin_top:800, 0:596]
     # img_bottom_gray = cv2.cvtColor(img_bottom, cv2.COLOR_BGR2GRAY)
-    # batch_import_path = "img/template/"
+    # batch_import_path = "img/imgTest/"
     batch_import_path = "img/template/"
     is_found = False  # 是否找到了模板
     for imgName in os.listdir(batch_import_path):
@@ -89,7 +89,7 @@ def template_all_search(handle):
             # click_imitate(handle, match['center_x'], match['center_y'] + margin_top)
             data = {'is_found': True, 'max_val': match['max_val'], 'center_x': match['center_x'],
                     'center_y': match['center_y']}
-            print('匹配到了模板,返回：', data)
+            print(batch_import_path + imgName, '匹配到了模板,返回：', data)
             return data
             #     match['center_point'][0] += 50
             #     print('22222匹配度超90%：', match['center_point'])

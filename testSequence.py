@@ -11,17 +11,17 @@ if handle:
     print('已找到句柄:', handle)
 
     test_list = []
-    # 打开装备列表
-    defAll.click_match_img_url(handle, 'img/system/furnace.png', wait_time)
-    defAll.click_match_img_url(handle, 'img/system/add.png', wait_time)
+
+    defAll.click_match_img_url(handle, 'img/system/furnace.png', wait_time)  # 寻找点击熔炉
+    defAll.click_imitate(handle, 357, 488, wait_time)  # 点击 加
 
     # 打开列表后先回到第一页
     for _ in range(10):
-        defAll.click_match_img_url(handle, 'img/system/listBack.png')
+        defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
 
     time.sleep(wait_time)
 
-    for number in range(1, 11):
+    for number in range(1, 102):
         # 模板匹配
         match_result = defAll.template_all_search(handle)
         # time.sleep(2)
@@ -52,9 +52,9 @@ if handle:
                         is_found = True
                         break
                     else:
-                        print(item, '匹配低于80%：', match)
+                        print(item, '天下布武匹配低于80%：', match)
                         # defAll.click_match_img_url(handle, 'img/imgTest/'+item)
-                print('---------------每次截图多次匹配结束-----------------')
+                print('本次没有天下布武，截图多次匹配结束')
                 if is_found:
                     break
                 # 每次截图判断天下布武后等待0.1秒再截图
@@ -63,7 +63,7 @@ if handle:
         else:
             print('找不到模板了，结束任务，测序：', print(test_list))
             break
-        print('当前次数:', number)
+        print('本次结束，当前次数:', number)
 
     print('循环完成，结束任务，测序：', print(test_list))
 
