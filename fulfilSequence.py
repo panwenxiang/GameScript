@@ -7,6 +7,10 @@ sq_list_no_change = [35, 62]
 template_address = "img/template/3level/"
 # 输入窗口名
 handle = defAll.get_handle('夜神模拟器')
+# 输入你要推序循环101的次数
+cycles = 2
+
+
 print('句柄', handle)
 
 npc_xy = {'x': 0, 'y': 0}
@@ -70,7 +74,7 @@ if handle:
         raise NameError('找不到熔炉')
 
     # 开始推序
-    for i in range(1, 10):
+    for i in range(1, cycles):
         sq_list = sq_list_no_change.copy()
         number = 1
         while number <= 101:
