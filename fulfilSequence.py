@@ -2,7 +2,8 @@ import cv2
 import defAll
 
 # 填入测序数组，模板： sq_list = [1, 2, 8, 33]
-sq_list = [7, 10]
+sq_list_no_change = [35, 62]
+
 npc_xy = {'x': 0, 'y': 0}
 furnace_xy = {'x': 0, 'y': 0}
 wait_time = 0.4
@@ -37,7 +38,7 @@ def fuse():
         defAll.click_imitate(handle, 480, 950, 0.1)  # 点击返回
 
 
-handle = defAll.get_handle('夜神模拟器')
+handle = defAll.get_handle('大号')
 print('句柄', handle)
 if handle:
 
@@ -66,27 +67,29 @@ if handle:
         raise NameError('找不到熔炉')
 
     # 开始推序
-    number = 1
-    while number <= 101:
-        count = 2
-        # 如果是最后一次，执行法术
-        if number == 10:
-            count = 1
-        if len(sq_list) >= 1:
-            count = sq_list[0] - number
-        if count >= 2:
-            print(number, '次，下一次熔炼：', sq_list[0] if len(sq_list) else '数组空了', '执行攻击+2次')
-            attack()
-            number += 2
-        elif count == 1:
-            print(number, '次，下一次熔炼：', sq_list[0] if len(sq_list) else '数组空了', '执行法术+1次')
-            magic()
-            number += 1
-        elif count == 0:
-            print(number, '次，下一次熔炼：', sq_list[0] if len(sq_list) else '数组空了', '****熔炼+1次')
-            fuse()
-            del (sq_list[0])
-            number += 1
+    for i in range(1, 10):
+        sq_list = sq_list_no_change.copy()
+        number = 1
+        while number <= 101:
+            count = 2
+            # 如果是最后一次，执行法术
+            if number == 101:
+                count = 1
+            if len(sq_list) >= 1:
+                count = sq_list[0] - number
+            if count >= 2:
+                print(number, '次，下一次熔炼：', sq_list[0] if len(sq_list) else '数组空了', '执行攻击+2次')
+                attack()
+                number += 2
+            elif count == 1:
+                print(number, '次，下一次熔炼：', sq_list[0] if len(sq_list) else '数组空了', '执行法术+1次')
+                magic()
+                number += 1
+            elif count == 0:
+                print(number, '次，下一次熔炼：', sq_list[0] if len(sq_list) else '数组空了', '****熔炼+1次')
+                fuse()
+                del (sq_list[0])
+                number += 1
 
 
 else:

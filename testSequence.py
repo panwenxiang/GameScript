@@ -61,11 +61,11 @@ if handle:
                 time.sleep(0.1)
             # time.sleep(0.6)
         else:
-            print('找不到模板了，结束任务，测序：', print(test_list))
+            print('找不到模板了，结束任务，测序：', test_list)
             break
         print('本次结束，当前次数:', number)
 
-    print('循环完成，结束任务，测序：', print(test_list))
+    print('循环完成，结束任务，测序：', test_list)
 
 
 else:
