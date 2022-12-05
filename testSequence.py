@@ -21,7 +21,6 @@ if handle:
     # 打开列表后先回到第一页
     for _ in range(10):
         defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
-
     time.sleep(wait_time)
 
     for number in range(1, 102):

@@ -1,3 +1,4 @@
+import copy
 import os
 import time
 
@@ -6,33 +7,22 @@ import win32con, win32api
 import defAll
 from datetime import datetime
 
-# print(1111, datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
-# time.sleep(0.5)
-# print(2222, datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
-# img = cv2.imread('img/imgTest/1.png')
-# print(datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
-# cv2.imwrite('C:/Users/j/Desktop/test/test1.png', img)
-# cv2.imwrite('C:/Users/j/Desktop/test/test2.png', img)
-# print(datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
-
-# hd = defAll.get_handle('夜神模拟器')
-# screenshot = defAll.get_screenshot(hd)
-# cv2.rectangle(screenshot, (130, 310), (410, 400), (0, 255, 0), 2)
-# screenshot = screenshot[310:400, 130:410]
-#
-# cv2.imshow('1', screenshot)
-
-# test_list = []
-# print(11, test_list)
-# test_list.append(23)
-# test_list.append(8)
-# print(22, test_list)
-
+a = [2, 10, 15]
+b = [4, 6, 10]
+c = {
+    '1': a.copy(),
+    '2': b.copy()
+}
+d = copy.deepcopy(c)
+t_list = [102]
 
 hd = defAll.get_handle('夜神模拟器')
-defAll.test_lcation(hd, 98, 274+480)
-# defAll.click_imitate(handle, 480, 950, 0.4)  # 点击右下角魔法书
-# defAll.click_imitate(handle, 480, 360, 0.1)  # 点击水系
+screenshot = defAll.get_screenshot(hd)
+cv2.rectangle(screenshot, (70, 320), (480, 390), (0, 255, 0), 2)
+cv2.imshow('1', screenshot)
+cv2.waitKey()
+# defAll.test_lcation(hd, 277, 684)
+# defAll.click_match_img_url(handle, 'img/template/3level/9.png')
 
 # handle = defAll.get_handle('4截取视频.avi')
 handle = ''

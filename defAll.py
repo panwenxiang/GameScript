@@ -190,3 +190,7 @@ def click_match_img_url(handle, url, sleep_time=0):
 # cv2.imwrite(url, bottom_img)
 # 抛出异常
 # raise NameError("count设置错误")
+# 画方框参数:图片/初始坐标/结束坐标/rgb/粗细
+# cv2.rectangle(imgBottom, max_loc, (max_loc[0] + ww1, max_loc[1] + hh1), (0, 255, 0), 2)
+# cv2.putText(imgBottom, str(matchPercent), max_loc, cv2.FONT_ITALIC, .6, (0, 0, 255), 2)
+
