@@ -67,7 +67,6 @@ def fuse(number_f, sq_list_f):
 
         # 点击返回
         defAll.click_imitate(handle, 480, 950, 0.1)
-        print(8888888, number_f)
         return number_f
 
 
