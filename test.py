@@ -33,8 +33,10 @@ print(22,a)
 #     print('匹配结果：', match_furnace2, '    ', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
 
 hd = defAll.get_handle('大号')
-# screenshot = defAll.get_screenshot(hd)
-# defAll.test_lcation(hd, 277, 684)
+screenshot = defAll.get_screenshot(hd)
+# defAll.test_lcation(hd, 490, 684)
+# defAll.click_imitate(hd, 490, 684)
+defAll.click_match_img_url(hd, 'img/system/back.png')
 #
 # defAll.click_imitate(hd, 480, 950, 1)  # 点击右下角魔法书
 # defAll.click_imitate(hd, 360, 800, 0.1)  # 点击特殊

@@ -5,6 +5,8 @@ import time
 
 # 填入测序数组，模板： sq_list = [1, 2, 8, 33]
 sq_list_no_change = [3, 10, 11]
+# 输入你想要融几次淬火刻印就去淬炼刻印
+fuse_count = 30
 
 # 输入窗口名
 handle = defAll.get_handle('大号')
@@ -15,7 +17,7 @@ fire_url = 'img/fire/'
 
 
 print('句柄', handle)
-
+fuse_number = 0
 npc_xy = {'x': 0, 'y': 0}
 furnace_xy = {'x': 0, 'y': 0}
 wait_time = 0.5
@@ -38,7 +40,18 @@ def magic():
         defAll.click_imitate(handle, 130, 380, 0.1)  # 点击火元素球
         defAll.click_imitate(handle, npc_xy['x'], npc_xy['y'], 0.1)  # 点击NPC
         first_magic = False
+def wash():
+    # 点击返回
+    defAll.click_imitate(handle, 480, 950, 0.1)
+    # 点击熔炉
+    defAll.click_match_img_url(handle, 'img/system/wash.png', wait_time)
+    # 点击洗
+    defAll.click_imitate(handle, 490, 684, 0.5)
+
+
+
 def fuse(number_f, sq_list_f):
+    global fuse_number
     # 点击熔炉
     defAll.click_match_img_url(handle, 'img/system/furnace-2.png', wait_time)
     # 点击 加
@@ -58,15 +71,21 @@ def fuse(number_f, sq_list_f):
         defAll.click_imitate(handle, 277, 684, 0.1)
         number_f += 1
         del(sq_list_f[0])
+        fuse_number += 1
+        if fuse_number >= 30:
+            wash()
         while len(sq_list) >= 1 and number_f == sq_list_f[0]:
             # 如果数组下一个又是，点击 熔炼装备
             defAll.click_imitate(handle, 277, 684, 0.1)
             number_f += 1
-            print()
             del (sq_list_f[0])
+            fuse_number += 1
+            if fuse_number >= 30:
+                wash()
 
         # 点击返回
-        defAll.click_imitate(handle, 480, 950, 0.1)
+        defAll.click_match_img_url(handle, 'img/system/back.png', 0.1)
+        # defAll.click_imitate(handle, 480, 950, 0.1)
         return number_f
 
 
