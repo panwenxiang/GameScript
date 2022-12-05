@@ -7,6 +7,9 @@ import win32con, win32api
 import defAll
 from datetime import datetime
 
+def ff(aa):
+    del(aa[0])
+
 a = [2, 10, 15]
 b = [4, 6, 10]
 c = {
@@ -16,19 +19,29 @@ c = {
 d = copy.deepcopy(c)
 t_list = [102]
 
-hd = defAll.get_handle('2233.avi')
-print('句柄', hd)
-screenshot = defAll.get_screenshot(hd)
-need_url = 'img/fire-need/'
-for item in os.listdir(need_url):
-    template_img = cv2.imread(need_url + item)
-    match_furnace2 = defAll.match_template(screenshot, template_img)
-    print('匹配结果：', match_furnace2, '    ', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+print(11,a)
+ff(a)
+print(22,a)
+
+# hd = defAll.get_handle('2233.avi')
+# print('句柄', hd)
+# screenshot = defAll.get_screenshot(hd)
+# need_url = 'img/fire-need/'
+# for item in os.listdir(need_url):
+#     template_img = cv2.imread(need_url + item)
+#     match_furnace2 = defAll.match_template(screenshot, template_img)
+#     print('匹配结果：', match_furnace2, '    ', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+
+hd = defAll.get_handle('大号')
+# screenshot = defAll.get_screenshot(hd)
+# defAll.test_lcation(hd, 277, 684)
+#
+# defAll.click_imitate(hd, 480, 950, 1)  # 点击右下角魔法书
+# defAll.click_imitate(hd, 360, 800, 0.1)  # 点击特殊
 
 # cv2.rectangle(screenshot, (70, 320), (480, 390), (0, 255, 0), 2)
-# cv2.imshow('1', screenshot)
-# cv2.waitKey()
-# defAll.test_lcation(hd, 277, 684)
+
+#
 # defAll.click_match_img_url(handle, 'img/template/3level/9.png')
 
 # handle = defAll.get_handle('4截取视频.avi')
