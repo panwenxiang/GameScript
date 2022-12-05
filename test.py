@@ -16,11 +16,18 @@ c = {
 d = copy.deepcopy(c)
 t_list = [102]
 
-hd = defAll.get_handle('夜神模拟器')
+hd = defAll.get_handle('2233.avi')
+print('句柄', hd)
 screenshot = defAll.get_screenshot(hd)
-cv2.rectangle(screenshot, (70, 320), (480, 390), (0, 255, 0), 2)
-cv2.imshow('1', screenshot)
-cv2.waitKey()
+need_url = 'img/fire-need/'
+for item in os.listdir(need_url):
+    template_img = cv2.imread(need_url + item)
+    match_furnace2 = defAll.match_template(screenshot, template_img)
+    print('匹配结果：', match_furnace2, '    ', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+
+# cv2.rectangle(screenshot, (70, 320), (480, 390), (0, 255, 0), 2)
+# cv2.imshow('1', screenshot)
+# cv2.waitKey()
 # defAll.test_lcation(hd, 277, 684)
 # defAll.click_match_img_url(handle, 'img/template/3level/9.png')
 

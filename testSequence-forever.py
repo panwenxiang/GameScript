@@ -5,7 +5,7 @@ import cv2
 from datetime import datetime
 
 # 输入窗口名
-handle = defAll.get_handle('夜神模拟器')
+handle = defAll.get_handle('大号')
 # 要匹配的淬火刻印的图片文件夹路径
 fire_url = 'img/fire/'
 
@@ -40,7 +40,7 @@ if handle:
             print('进入判断时间**********************')
             need_url = 'img/fire-need/'
             # 判断奇怪的东西，截图6张，每次间隔0.1秒
-            for i in range(6):
+            for i in range(10):
                 is_found = False  # 是否找到了奇怪的东西，找到停止上面这个for循环
                 screenshot_img = defAll.get_screenshot(handle)
                 # 获取截图后切出奇怪的东西那一块，增加匹配效率，[y1:y2,x1:x2]

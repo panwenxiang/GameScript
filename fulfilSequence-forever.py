@@ -3,10 +3,7 @@ import defAll
 import copy
 
 # 填入测序数组，模板： sq_list = [1, 2, 8, 33]
-sq_list_no_change = {
-    '1': [10, 15],
-    '2': [4, 10]
-}
+sq_list_no_change = []
 # 输入推序需要熔掉的装备的文件夹地址
 template_address = "img/template/3level/"
 # 输入窗口名
