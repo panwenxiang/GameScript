@@ -18,10 +18,22 @@ c = {
 }
 d = copy.deepcopy(c)
 t_list = [102]
+# a=2
+# s=False
+#
+# if a != s:
+#     print(22)
 
-print(11,a)
-ff(a)
-print(22,a)
+level_address = {
+    '1': 'img/template/1level',
+    '2': 'img/template/2level',
+    '3': 'img/template/3level',
+    '4': 'img/template/4level',
+    '5': 'img/template/5level',
+}
+ws=2
+print(level_address[str(ws)])
+
 
 # hd = defAll.get_handle('2233.avi')
 # print('句柄', hd)
@@ -32,11 +44,11 @@ print(22,a)
 #     match_furnace2 = defAll.match_template(screenshot, template_img)
 #     print('匹配结果：', match_furnace2, '    ', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
 
-hd = defAll.get_handle('大号')
-screenshot = defAll.get_screenshot(hd)
+# hd = defAll.get_handle('大号')
+# screenshot = defAll.get_screenshot(hd)
 # defAll.test_lcation(hd, 490, 684)
 # defAll.click_imitate(hd, 490, 684)
-defAll.click_match_img_url(hd, 'img/system/back.png')
+# defAll.click_match_img_url(hd, 'img/system/back.png')
 #
 # defAll.click_imitate(hd, 480, 950, 1)  # 点击右下角魔法书
 # defAll.click_imitate(hd, 360, 800, 0.1)  # 点击特殊

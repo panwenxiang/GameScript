@@ -9,6 +9,7 @@ wait_time = 0.5
 handle = defAll.get_handle('夜神模拟器')
 # 输入需要测序的星级装备图片的文件夹地址
 template_address = "img/template/3level/"
+# 输入你想要
 
 if handle:
     print('已找到句柄:', handle)

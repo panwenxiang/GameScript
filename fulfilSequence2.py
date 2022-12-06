@@ -10,44 +10,57 @@ sq_list_no_change = {
 # 输入推序需要熔掉的装备的文件夹地址
 template_address = "img/template/3level/"
 # 输入窗口名
-handle = defAll.get_handle('夜神模拟器')
+handle = defAll.get_handle('大号')
 # 输入你要推序循环101的次数
 cycles = 1
 
 
+# 不同星级对应的不同模板地址
+level_address = {
+    '1': 'img/template/1level',
+    '2': 'img/template/2level',
+    '3': 'img/template/3level',
+    '4': 'img/template/4level',
+    '5': 'img/template/5level',
+}
 print('句柄', handle)
 
 npc_xy = {'x': 0, 'y': 0}
 furnace_xy = {'x': 0, 'y': 0}
 wait_time = 0.4
-first = True
+after_level = False
+
 
 def attack():
     defAll.click_imitate(handle, npc_xy['x'], npc_xy['y'], 0.1)
+
+
 def magic():
     defAll.click_imitate(handle, 480, 950, wait_time)  # 点击右下角魔法书
     defAll.click_imitate(handle, 480, 360, 0.1)  # 点击水系
     defAll.click_imitate(handle, 140, 360, 0.1)  # 点击治疗
     defAll.click_imitate(handle, 140, 360, 0.1)  # 点击使用治疗
-def fuse():
+
+
+def fuse(fuse_level):
+    global after_level
     defAll.click_imitate(handle, furnace_xy['x'], furnace_xy['y'], 0.1)  # 点熔炉
     defAll.click_imitate(handle, 357, 488, wait_time)  # 点击 加
-    global first
-    if first:
+    if fuse_level != after_level:
         # 第一次进入，打开列表后先回到第一页
         first = False
         for _ in range(10):
             defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
-    match_result = defAll.template_all_search(handle, template_address)
+    match_result = defAll.template_all_search(handle, level_address[str(fuse_level)])
     if match_result['is_found']:
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
         defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 选择按钮
         defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 熔炼装备
         defAll.click_imitate(handle, 480, 950, 0.1)  # 点击返回
+    after_level = fuse_level
 
-print(11111)
+
 if handle:
-    print(11111)
 
     # 找出铃铛或剑的坐标
     screenshot = defAll.get_screenshot(handle)
@@ -78,7 +91,7 @@ if handle:
     for i in range(0, cycles):
 
         sq_list = copy.deepcopy(sq_list_no_change)
-        print('111111', sq_list)
+        print(i + 1, '次循环，初始拿到的字典', sq_list)
 
         number = 1
         while number <= 101:
@@ -87,12 +100,14 @@ if handle:
             if number == 101:
                 count = 1
 
+            level = False
             t_list = [102]  # 离下一个出的最小距离的字典的数组的浅拷贝
             for li in sq_list:
-                if len(sq_list[li]) >= 1:
-                    t_list = sq_list[li] if sq_list[li][0] < t_list[0] else ''
-            # 都没有时为空
-            print(5555555555, t_list[0])
+                if len(sq_list[li]) >= 1 and sq_list[li][0] < t_list[0]:
+                    t_list = sq_list[li]
+                    level = li
+                    # 都没有时为空
+            print('匹配得到字典中的哪一项数组：', t_list, '星级：', level)
             if t_list[0] == 102:
                 del (t_list[0])
 
@@ -109,13 +124,12 @@ if handle:
                 number += 1
             elif count == 0:
                 print(number, '次，下一次熔炼：', t_list[0] if len(t_list) else '数组空了', '****熔炼+1次')
-                fuse()
-                # del (t_list[0])
+                fuse(level)
                 ran = t_list[0]
                 for elem in sq_list:
-                    if ran == sq_list[elem][0]:
+                    if len(sq_list[elem]) >= 1 and ran == sq_list[elem][0]:
                         del (sq_list[elem][0])
-            print('操作一次后：', sq_list)
+            print('101循环执行1次后的字典：', sq_list)
 
 
 else:
