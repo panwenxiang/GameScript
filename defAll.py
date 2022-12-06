@@ -93,7 +93,7 @@ def template_all_search(handle, batch_import_path):
         print('公用所有模板匹配方法，', imgName, '最高匹配度:', match['max_val'])
         # print('  最高匹配度', int(match['max_val']))
 
-        if match['max_val'] > 87:
+        if match['max_val'] > 92:
             is_found = True
             # 加上截图距离top的距离margin_top
             # click_imitate(handle, match['center_x'], match['center_y'] + margin_top)

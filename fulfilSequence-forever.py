@@ -11,9 +11,12 @@ sq_list_first = [18, 19, 21, 24, 25, 27, 31, 32, 34, 36, 37, 38, 39, 42, 43, 47,
 
 # 输入当前是第几次
 input_number = 18
+# 输入：你想使用上面这两个变量，就设为True，记得查看淬火刻印的数量，自己去洗一下或者把下面这个变量改小于你剩余的淬火刻印
+first_run = False
 
 # 输入你想要融几次淬火刻印就去淬炼刻印
 fuse_count = 25
+
 
 # 输入窗口名
 handle = defAll.get_handle('大号')
@@ -30,7 +33,6 @@ wait_time = 0.5
 first = True
 first_magic = True
 first_match = False
-first_run = True
 
 
 def attack():
@@ -51,7 +53,7 @@ def magic():
 def wash():
     # 点击返回
     defAll.click_imitate(handle, 480, 950, 0.1)
-    # 点击熔炉
+    # 点击洗池
     defAll.click_match_img_url(handle, 'img/system/wash.png', wait_time)
     # 点击洗
     defAll.click_imitate(handle, 490, 684, 0.5)
@@ -84,15 +86,18 @@ def fuse(number_f, sq_list_f):
         fuse_number += 1
         if fuse_number >= 30:
             wash()
+            fuse_number = 0
+            return number_f
         while len(sq_list) >= 1 and number_f == sq_list_f[0]:
             # 如果数组下一个又是，点击 熔炼装备
             defAll.click_imitate(handle, 277, 684, 0.1)
             number_f += 1
             del (sq_list_f[0])
             fuse_number += 1
-            if fuse_number >= 30:
+            if fuse_number >= fuse_count:
                 wash()
                 fuse_number = 0
+                return number_f
 
         # 点击返回
         defAll.click_match_img_url(handle, 'img/system/back.png', 0.1)
