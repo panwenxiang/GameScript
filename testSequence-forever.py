@@ -20,7 +20,7 @@ if handle:
     # 点击熔炉
     defAll.click_match_img_url(handle, 'img/system/furnace-2.png', wait_time)
     # 点击 加
-    defAll.click_match_img_url(handle, 'img/system/add-forever.png', wait_time)
+    defAll.click_imitate(handle, 300, 400, wait_time)
     # 打开列表后先回到第一页
     for _ in range(10):
         defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页

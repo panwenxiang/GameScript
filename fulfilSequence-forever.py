@@ -4,9 +4,16 @@ import copy
 import time
 
 # 填入测序数组，模板： sq_list = [1, 2, 8, 33]
-sq_list_no_change = [3, 10, 11]
+sq_list_no_change = [1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 18, 19, 21, 24, 25, 27, 31, 32, 34, 36, 37, 38, 39, 42, 43, 47, 52, 57, 59, 60, 61, 64, 67, 69, 71, 72, 76, 78, 80, 81, 82, 89, 91, 94, 95, 96, 98, 99, 100]
+
+# 输入从这次开始的数组
+sq_list_first = [18, 19, 21, 24, 25, 27, 31, 32, 34, 36, 37, 38, 39, 42, 43, 47, 52, 57, 59, 60, 61, 64, 67, 69, 71, 72, 76, 78, 80, 81, 82, 89, 91, 94, 95, 96, 98, 99, 100]
+
+# 输入当前是第几次
+input_number = 18
+
 # 输入你想要融几次淬火刻印就去淬炼刻印
-fuse_count = 30
+fuse_count = 25
 
 # 输入窗口名
 handle = defAll.get_handle('大号')
@@ -15,7 +22,6 @@ cycles = 1
 # 输入要匹配的淬火刻印的图片文件夹路径
 fire_url = 'img/fire/'
 
-
 print('句柄', handle)
 fuse_number = 0
 npc_xy = {'x': 0, 'y': 0}
@@ -23,6 +29,8 @@ furnace_xy = {'x': 0, 'y': 0}
 wait_time = 0.5
 first = True
 first_magic = True
+first_match = False
+first_run = True
 
 
 def attack():
@@ -51,18 +59,20 @@ def wash():
 
 
 def fuse(number_f, sq_list_f):
-    global fuse_number
+    global fuse_number, first_match
     # 点击熔炉
     defAll.click_match_img_url(handle, 'img/system/furnace-2.png', wait_time)
     # 点击 加
-    defAll.click_match_img_url(handle, 'img/system/add-forever.png', wait_time)
+    defAll.click_imitate(handle, 300, 400, wait_time)
     # 打开列表后先回到第一页
-    for _ in range(10):
-        defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
-    time.sleep(wait_time)
+    if first_match:
+        for _ in range(10):
+            defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
+        time.sleep(wait_time)
 
     match_result = defAll.template_all_search(handle, fire_url)
     if match_result['is_found']:
+        first_match = False
         # 找到模板，点击
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
         # 点击 选择按钮
@@ -82,6 +92,7 @@ def fuse(number_f, sq_list_f):
             fuse_number += 1
             if fuse_number >= 30:
                 wash()
+                fuse_number = 0
 
         # 点击返回
         defAll.click_match_img_url(handle, 'img/system/back.png', 0.1)
@@ -111,6 +122,11 @@ if handle:
 
         sq_list = sq_list_no_change.copy()
         number = 1
+        if first_run:
+            number = input_number
+            sq_list = sq_list_first.copy()
+            first_run = False
+
         while number <= 101:
             count = 2
             # 如果是最后一次，执行法术

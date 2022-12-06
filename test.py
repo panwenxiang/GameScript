@@ -24,29 +24,31 @@ t_list = [102]
 # if a != s:
 #     print(22)
 
-level_address = {
-    '1': 'img/template/1level',
-    '2': 'img/template/2level',
-    '3': 'img/template/3level',
-    '4': 'img/template/4level',
-    '5': 'img/template/5level',
-}
-w = {}
-e = {
-    '1':[2]
-}
-test_level = [3, 4]
-test_list = {}
-for i in test_level:
-    test_list[str(i)] = []
+# level_address = {
+#     '1': 'img/template/1level',
+#     '2': 'img/template/2level',
+#     '3': 'img/template/3level',
+#     '4': 'img/template/4level',
+#     '5': 'img/template/5level',
+# }
+# w = {}
+# e = {
+#     '1':[2]
+# }
+# test_level = [3, 4]
+# test_list = {}
+# for i in test_level:
+#     test_list[str(i)] = []
+#
+# for i in test_level:
+#     test_list[str(i)].append(68)
+sq_list_first = [18, 19, 21, 24, 25, 27, 31, 32, 34, 36, 37, 38, 39, 42, 43, 47, 52, 57, 59, 60, 61, 64, 67, 69, 71, 72, 76, 78, 80, 81, 82, 89, 91, 94, 95, 96, 98, 99, 100]
+print(len(sq_list_first))
+print(390+727)
 
-for i in test_level:
-    test_list[str(i)].append(68)
-
-
-
-
-print(test_list)
+# hdl = defAll.get_handle('大号')
+# defAll.click_imitate(hdl, 490, 684, 0.5)
+# print(test_list)
 
 
 # hd = defAll.get_handle('2233.avi')
@@ -60,7 +62,7 @@ print(test_list)
 
 # hd = defAll.get_handle('大号')
 # screenshot = defAll.get_screenshot(hd)
-# defAll.test_lcation(hd, 490, 684)
+# defAll.test_lcation(hd, 300, 400)
 # defAll.click_imitate(hd, 490, 684)
 # defAll.click_match_img_url(hd, 'img/system/back.png')
 #
