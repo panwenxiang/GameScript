@@ -31,8 +31,22 @@ level_address = {
     '4': 'img/template/4level',
     '5': 'img/template/5level',
 }
-ws=2
-print(level_address[str(ws)])
+w = {}
+e = {
+    '1':[2]
+}
+test_level = [3, 4]
+test_list = {}
+for i in test_level:
+    test_list[str(i)] = []
+
+for i in test_level:
+    test_list[str(i)].append(68)
+
+
+
+
+print(test_list)
 
 
 # hd = defAll.get_handle('2233.avi')

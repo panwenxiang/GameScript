@@ -7,24 +7,17 @@ sq_list_no_change = {
     '1': [10, 15],
     '2': [4, 10]
 }
-# 输入推序需要熔掉的装备的文件夹地址
+
 template_address = "img/template/3level/"
 # 输入窗口名
 handle = defAll.get_handle('大号')
 # 输入你要推序循环101的次数
 cycles = 1
 
-
-# 不同星级对应的不同模板地址
-level_address = {
-    '1': 'img/template/1level',
-    '2': 'img/template/2level',
-    '3': 'img/template/3level',
-    '4': 'img/template/4level',
-    '5': 'img/template/5level',
-}
 print('句柄', handle)
 
+# 星级装备的地址字典
+level_address = defAll.level_address
 npc_xy = {'x': 0, 'y': 0}
 furnace_xy = {'x': 0, 'y': 0}
 wait_time = 0.4

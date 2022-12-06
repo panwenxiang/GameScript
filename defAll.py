@@ -14,6 +14,16 @@ margin_top = 480  # 模板匹配截图到顶部的距离
 sleep_next = 0.5
 
 
+# 不同星级对应的不同模板地址
+level_address = {
+    '1': 'img/template/1level',
+    '2': 'img/template/2level',
+    '3': 'img/template/3level',
+    '4': 'img/template/4level',
+    '5': 'img/template/5level',
+}
+
+
 # 查找窗口方法
 def get_handle(name):
     # 通过名字或类名获取窗口句柄
@@ -80,7 +90,7 @@ def template_all_search(handle, batch_import_path):
         match = match_template(img_bottom, img_template_read)
         # match = cv2.matchTemplate(img_bottom_gray, imgTemplateRead, cv2.TM_CCOEFF_NORMED)
         # cv2.imshow('2', scaledTemplateImg)
-        print(imgName, '模板匹配，最高匹配度', match['max_val'])
+        print('公用所有模板匹配方法，', imgName, '最高匹配度:', match['max_val'])
         # print('  最高匹配度', int(match['max_val']))
 
         if match['max_val'] > 90:
@@ -89,7 +99,7 @@ def template_all_search(handle, batch_import_path):
             # click_imitate(handle, match['center_x'], match['center_y'] + margin_top)
             data = {'is_found': True, 'max_val': match['max_val'], 'center_x': match['center_x'],
                     'center_y': match['center_y']}
-            print(batch_import_path + imgName, '匹配到了模板,返回：', data)
+            print('公用所有模板匹配方法，', batch_import_path + imgName, '匹配到了模板,返回：', data)
             return data
             #     match['center_point'][0] += 50
             #     print('22222匹配度超90%：', match['center_point'])
