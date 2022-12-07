@@ -201,7 +201,7 @@ def click_match_img_url(handle, url, sleep_time=0):
 # 抛出异常
 # raise NameError("count设置错误")
 # 画方框参数:图片/初始坐标/结束坐标/rgb/粗细
-# cv2.rectangle(imgBottom, max_loc, (max_loc[0] + ww1, max_loc[1] + hh1), (0, 255, 0), 2)
+# cv2.rectangle(img_bottom, (match['center_x'], match['center_y']), (match['center_x'], match['center_y']), (0, 255, 0), 5)
 # cv2.putText(imgBottom, str(matchPercent), max_loc, cv2.FONT_ITALIC, .6, (0, 0, 255), 2)
 # 全局变量在方法中使用报错的问题：global 声明一下该变量是全局变量
 # global 变量名

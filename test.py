@@ -42,10 +42,25 @@ t_list = [102]
 #
 # for i in test_level:
 #     test_list[str(i)].append(68)
+hd = defAll.get_handle('大号')
+level = '1'
+for url in os.listdir(defAll.level_address[level]):
+    template = cv2.imread(defAll.level_address[level] + url)
+    screenshot = defAll.get_screenshot(hd)
+    match = defAll.match_template(screenshot, template)
+    print(url, match)
+    # if match['max_val'] > 92:
+    #     cv2.rectangle(screenshot, (match['center_x'], match['center_y']), (match['center_x'], match['center_y']), (0, 255, 0), 5)
+    #     cv2.imshow('awd', screenshot)
+    #     cv2.waitKey()
+
+
+
+
 sq_list_first = [1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 18, 19, 21, 24, 25, 27, 31, 32, 34, 36, 37, 38, 39, 42, 43, 47, 52, 57, 59, 60, 61, 64, 67, 69, 71, 72, 76, 78, 80, 81, 82, 89, 91, 94, 95, 96, 98, 99, 100]
 
-print(len(sq_list_first))
-print(51*10+1117)
+# print(len(sq_list_first))
+# print(51*10+1117)
 # 51
 # 1627
 # hdl = defAll.get_handle('大号')
