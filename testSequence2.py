@@ -81,7 +81,7 @@ if handle:
                 print(lv, '星，', number, '次，找不到模板了，本星级测序结束，当前字典：', test_list)
                 break
 
-            print(number, '次结束，当前字典：', test_list)
+            print(number-1, '次结束，当前字典：', test_list)
         print(lv, '星测序完成，字典：', test_list)
 
 else:
