@@ -55,7 +55,8 @@ def fuse(fuse_level):
     match_result = defAll.template_all_search(handle, level_address[str(fuse_level)])
     if match_result['is_found']:
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
-        defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 选择按钮
+        # defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 选择按钮
+        defAll.click_match_img_url(handle, 'img/system/select.png')
         defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 熔炼装备
         defAll.click_imitate(handle, 480, 950, 0.1)  # 点击返回
     after_level = fuse_level
