@@ -128,6 +128,7 @@ if handle:
             elif count == 0:
                 print(number, '次，下一次熔炼：', t_list[0] if len(t_list) else '数组空了', '****熔炼+1次')
                 fuse(level)
+                number += 1
                 ran = t_list[0]
                 for elem in sq_list:
                     if len(sq_list[elem]) >= 1 and ran == sq_list[elem][0]:
