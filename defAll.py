@@ -21,6 +21,7 @@ level_address = {
     '3': 'img/template/3level/',
     '4': 'img/template/4level/',
     '5': 'img/template/5level/',
+    '6': 'img/template/6level/',
 }
 
 
