@@ -6,9 +6,9 @@ from datetime import datetime
 
 # 输入窗口名
 handle = defAll.get_handle('大号')
-
 # 输入你想要测的星级，例如：[1, 2, 3]，请确保文件夹里有图片
-test_level = [1, 3]
+test_level = [5, 6]
+
 
 # 星级装备的地址字典
 level_address = defAll.level_address
@@ -16,7 +16,6 @@ level_address = defAll.level_address
 wait_time = 0.5
 # 测试结果
 test_list = {}
-# 第几次开始，默认是1
 number = 1
 
 if handle:
