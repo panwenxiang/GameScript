@@ -43,15 +43,16 @@ t_list = [102]
 # for i in test_level:
 #     test_list[str(i)].append(68)
 hd = defAll.get_handle('大号')
-level = '4'
+level = '5'
 address = defAll.level_address[level]
 # address = 'img/imgTest/'
 for url in os.listdir(address):
     template = cv2.imread(address + url)
     screenshot = defAll.get_screenshot(hd)
+    screenshot = screenshot[480:800, 0:596]
     match = defAll.match_template(screenshot, template)
     print(url, match)
-    # if match['max_val'] > 92:
+    # if match['max_val'] > 90:
     #     cv2.rectangle(screenshot, (match['center_x'], match['center_y']), (match['center_x'], match['center_y']), (0, 255, 0), 5)
     #     cv2.imshow('awd', screenshot)
     #     cv2.waitKey()
