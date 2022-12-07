@@ -43,7 +43,7 @@ t_list = [102]
 # for i in test_level:
 #     test_list[str(i)].append(68)
 hd = defAll.get_handle('大号')
-level = '3'
+level = '4'
 address = defAll.level_address[level]
 # address = 'img/imgTest/'
 for url in os.listdir(address):
