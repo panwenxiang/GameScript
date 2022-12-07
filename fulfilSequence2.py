@@ -7,7 +7,6 @@ sq_list_no_change = {
     '1': [10, 15],
     '2': [4, 10]
 }
-
 template_address = "img/template/3level/"
 # 输入窗口名
 handle = defAll.get_handle('大号')
