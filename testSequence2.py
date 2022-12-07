@@ -46,7 +46,6 @@ if handle:
                                      wait_time)
                 defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 选择按钮
                 defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 熔炼装备
-                number += 1
                 defAll.click_imitate(handle, 357, 488, 0.3)  # 点击 加
 
                 print('进入判断时间**********************')
@@ -75,7 +74,8 @@ if handle:
                         break
                     # 每次截图判断天下布武后等待0.1秒再截图
                     time.sleep(0.05)
-                # time.sleep(0.6)
+
+                number += 1
                 print('结束判断时间**********************')
             else:
                 print(lv, '星，', number, '次，找不到模板了，本星级测序结束，当前字典：', test_list)
