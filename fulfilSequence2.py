@@ -43,23 +43,27 @@ def magic():
         defAll.click_imitate(handle, npc_xy['x'], npc_xy['y'], 0.1)  # 点击NPC
 
 
-def fuse(fuse_level):
+def fuse(fuse_level, fuse_sq_list):
     global after_level
     defAll.click_imitate(handle, furnace_xy['x'], furnace_xy['y'], 0.1)  # 点熔炉
     defAll.click_imitate(handle, 357, 488, wait_time)  # 点击 加
     if fuse_level != after_level:
         # 第一次进入，打开列表后先回到第一页
-        first = False
         for _ in range(10):
             defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
     match_result = defAll.template_all_search(handle, level_address[str(fuse_level)])
+    after_level = fuse_level
     if match_result['is_found']:
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
         # defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 选择按钮
         defAll.click_match_img_url(handle, 'img/system/select.png')
         defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 熔炼装备
         defAll.click_imitate(handle, 480, 950, 0.1)  # 点击返回
-    after_level = fuse_level
+    # 如果该星级已经没有装备来融了
+    else:
+        fuse_sq_list.pop(str(fuse_level))
+        return fuse(fuse_level+1, fuse_sq_list)
+
 
 
 if handle:
@@ -126,7 +130,7 @@ if handle:
                 number += 1
             elif count == 0:
                 print(number, '次，下一次熔炼：', t_list[0] if len(t_list) else '数组空了', '****熔炼+1次')
-                fuse(level)
+                fuse(level, sq_list)
                 number += 1
                 ran = t_list[0]
                 for elem in sq_list:

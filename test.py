@@ -9,24 +9,26 @@ from datetime import datetime
 
 
 
-# a = {'5': [4, 7, 19, 35, 45, 53, 58], '6': [65, 66, 74, 92, 97, 4, 7, 12, 19, 35, 45, 53, 58]}
-# print(11111, a)
+a = {'5': [4, 7, 19, 35, 45, 53, 58], '6': [65, 66, 74, 92, 97, 4, 7, 12, 19, 35, 45, 53, 58]}
+print(11111, a)
+a.pop('5')
 # for i in a:
 #     a[i] = sorted(a[i])
-# print(22222, a)
+print(22222, a)
 
 
 # 图片对比测试
-hd = defAll.get_handle('大号')
-level = '6'
-# address = defAll.level_address[level]
-address = 'img/system/'
-for url in os.listdir(address):
-    template = cv2.imread(address + url)
-    screenshot = defAll.get_screenshot(hd)
-    screenshot = screenshot[480:800, 0:596]
-    match = defAll.match_template(screenshot, template)
-    print(url, match)
+# hd = defAll.get_handle('大号')
+# level = '6'
+# # address = defAll.level_address[level]
+# address = 'img/system/'
+# for url in os.listdir(address):
+#     template = cv2.imread(address + url)
+#     screenshot = defAll.get_screenshot(hd)
+#     screenshot = screenshot[480:800, 0:596]
+#     match = defAll.match_template(screenshot, template)
+#     print(url, match)
+
     # if match['max_val'] > 90:
     #     cv2.rectangle(screenshot, (match['center_x'], match['center_y']), (match['center_x'], match['center_y']), (0, 255, 0), 5)
     #     cv2.imshow('awd', screenshot)
