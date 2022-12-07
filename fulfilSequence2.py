@@ -13,6 +13,9 @@ template_address = "img/template/3level/"
 handle = defAll.get_handle('大号')
 # 输入你要推序循环101的次数
 cycles = 1
+# 输入你要选择的魔法:1-治疗术，2-元素球
+magic_type = 2
+
 
 print('句柄', handle)
 
@@ -29,10 +32,17 @@ def attack():
 
 
 def magic():
-    defAll.click_imitate(handle, 480, 950, wait_time)  # 点击右下角魔法书
-    defAll.click_imitate(handle, 480, 360, 0.1)  # 点击水系
-    defAll.click_imitate(handle, 140, 360, 0.1)  # 点击治疗
-    defAll.click_imitate(handle, 140, 360, 0.1)  # 点击使用治疗
+    if magic_type == 1:
+        defAll.click_imitate(handle, 480, 950, wait_time)  # 点击右下角魔法书
+        defAll.click_imitate(handle, 480, 360, 0.1)  # 点击水系
+        defAll.click_imitate(handle, 140, 360, 0.1)  # 点击治疗
+        defAll.click_imitate(handle, 140, 360, 0.1)  # 点击使用治疗
+    if magic_type == 2:
+        defAll.click_imitate(handle, 480, 950, 1)  # 点击右下角魔法书
+        defAll.click_imitate(handle, 360, 800, 0.1)  # 点击特殊
+        defAll.click_imitate(handle, 500, 360, 0.1)  # 点击中间黄星星
+        defAll.click_imitate(handle, 130, 380, 0.1)  # 点击火元素球
+        defAll.click_imitate(handle, npc_xy['x'], npc_xy['y'], 0.1)  # 点击NPC
 
 
 def fuse(fuse_level):
