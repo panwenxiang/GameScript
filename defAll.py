@@ -23,6 +23,24 @@ level_address = {
     '5': 'img/template/5level/',
     '6': 'img/template/6level/',
 }
+# 不同星级对应的不同模板地址
+level_test_address = {
+    '1': 'img/template/test/1level/',
+    '2': 'img/template/test/2level/',
+    '3': 'img/template/test/3level/',
+    '4': 'img/template/test/4level/',
+    '5': 'img/template/test/5level/',
+    '6': 'img/template/test/6level/',
+}
+# 不同星级对应的不同模板地址
+level_fulfil_address = {
+    '1': 'img/template/fulfil/1level/',
+    '2': 'img/template/fulfil/2level/',
+    '3': 'img/template/fulfil/3level/',
+    '4': 'img/template/fulfil/4level/',
+    '5': 'img/template/fulfil/5level/',
+    '6': 'img/template/fulfil/6level/',
+}
 
 
 # 查找窗口方法

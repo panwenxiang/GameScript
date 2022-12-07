@@ -19,7 +19,7 @@ magic_type = 2
 print('句柄', handle)
 
 # 星级装备的地址字典
-level_address = defAll.level_address
+level_address = defAll.level_fulfil_address
 npc_xy = {'x': 0, 'y': 0}
 furnace_xy = {'x': 0, 'y': 0}
 wait_time = 0.4
