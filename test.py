@@ -44,7 +44,9 @@ t_list = [102]
 #     test_list[str(i)].append(68)
 hd = defAll.get_handle('大号')
 level = '1'
-for url in os.listdir(defAll.level_address[level]):
+# address = defAll.level_address[level]
+address = 'img/imgTest/'
+for url in os.listdir(address):
     template = cv2.imread(defAll.level_address[level] + url)
     screenshot = defAll.get_screenshot(hd)
     match = defAll.match_template(screenshot, template)

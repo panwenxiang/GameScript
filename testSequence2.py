@@ -8,7 +8,7 @@ from datetime import datetime
 handle = defAll.get_handle('大号')
 
 # 输入你想要测的星级，例如：[1, 2, 3]，请确保文件夹里有图片
-test_level = [3, 4]
+test_level = [1, 3]
 
 # 星级装备的地址字典
 level_address = defAll.level_address
@@ -38,8 +38,9 @@ if handle:
         for count in range(1, 102):
             # 模板匹配
             match_result = defAll.template_all_search(handle, level_address[str(lv)])
+
             if number == 102:
-                number == 1
+                number = 1
             if match_result['is_found']:
                 defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top,
                                      wait_time)
@@ -80,7 +81,7 @@ if handle:
                 print(lv, '星，', number, '次，找不到模板了，本星级测序结束，当前字典：', test_list)
                 break
 
-            print('本次结束，当前次数:', number)
+            print(number, '次结束，当前字典：', test_list)
         print(lv, '星测序完成，字典：', test_list)
 
 else:
