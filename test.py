@@ -7,51 +7,26 @@ import win32con, win32api
 import defAll
 from datetime import datetime
 
-def ff(aa):
-    del(aa[0])
 
-a = [2, 10, 15]
-b = [4, 6, 10]
-c = {
-    '1': a.copy(),
-    '2': b.copy()
-}
-d = copy.deepcopy(c)
-t_list = [102]
-# a=2
-# s=False
-#
-# if a != s:
-#     print(22)
 
-# level_address = {
-#     '1': 'img/template/1level',
-#     '2': 'img/template/2level',
-#     '3': 'img/template/3level',
-#     '4': 'img/template/4level',
-#     '5': 'img/template/5level',
-# }
-# w = {}
-# e = {
-#     '1':[2]
-# }
-# test_level = [3, 4]
-# test_list = {}
-# for i in test_level:
-#     test_list[str(i)] = []
-#
-# for i in test_level:
-#     test_list[str(i)].append(68)
-hd = defAll.get_handle('大号')
-level = '6'
-address = defAll.level_address[level]
-# address = 'img/imgTest/'
-for url in os.listdir(address):
-    template = cv2.imread(address + url)
-    screenshot = defAll.get_screenshot(hd)
-    screenshot = screenshot[480:800, 0:596]
-    match = defAll.match_template(screenshot, template)
-    print(url, match)
+a = {'5': [4, 7, 19, 35, 45, 53, 58], '6': [65, 66, 74, 92, 97, 4, 7, 12, 19, 35, 45, 53, 58]}
+print(11111, a)
+for i in a:
+    a[i] = sorted(a[i])
+print(22222, a)
+
+
+# 图片对比测试
+# hd = defAll.get_handle('大号')
+# level = '6'
+# address = defAll.level_address[level]
+# # address = 'img/imgTest/'
+# for url in os.listdir(address):
+#     template = cv2.imread(address + url)
+#     screenshot = defAll.get_screenshot(hd)
+#     screenshot = screenshot[480:800, 0:596]
+#     match = defAll.match_template(screenshot, template)
+#     print(url, match)
     # if match['max_val'] > 90:
     #     cv2.rectangle(screenshot, (match['center_x'], match['center_y']), (match['center_x'], match['center_y']), (0, 255, 0), 5)
     #     cv2.imshow('awd', screenshot)

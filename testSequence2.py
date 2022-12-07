@@ -81,6 +81,9 @@ if handle:
                 break
 
             print(number-1, '次结束，当前字典：', test_list)
+
+        for i in test_list:
+            test_list[i] = sorted(test_list[i])
         print(lv, '星测序完成，字典：', test_list)
 
 else:
