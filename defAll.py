@@ -16,11 +16,11 @@ sleep_next = 0.5
 
 # 不同星级对应的不同模板地址
 level_address = {
-    '1': 'img/template/1level',
-    '2': 'img/template/2level',
-    '3': 'img/template/3level',
-    '4': 'img/template/4level',
-    '5': 'img/template/5level',
+    '1': 'img/template/1level/',
+    '2': 'img/template/2level/',
+    '3': 'img/template/3level/',
+    '4': 'img/template/4level/',
+    '5': 'img/template/5level/',
 }
 
 
