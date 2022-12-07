@@ -47,7 +47,7 @@ level = '1'
 # address = defAll.level_address[level]
 address = 'img/imgTest/'
 for url in os.listdir(address):
-    template = cv2.imread(defAll.level_address[level] + url)
+    template = cv2.imread(address + url)
     screenshot = defAll.get_screenshot(hd)
     match = defAll.match_template(screenshot, template)
     print(url, match)
