@@ -5,11 +5,10 @@ import cv2
 from datetime import datetime
 
 # 输入窗口名
-handle = defAll.get_handle('夜神模拟器')
+handle = defAll.get_handle('大号')
 
 # 输入你想要测的星级，例如：[1, 2, 3]，请确保文件夹里有图片
 test_level = [3, 4]
-
 
 # 星级装备的地址字典
 level_address = defAll.level_address
@@ -17,6 +16,8 @@ level_address = defAll.level_address
 wait_time = 0.5
 # 测试结果
 test_list = {}
+# 第几次开始，默认是1
+number = 1
 
 if handle:
     print('已找到句柄:', handle)
@@ -34,14 +35,17 @@ if handle:
             defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
         time.sleep(wait_time)
 
-        for number in range(1, 102):
+        for count in range(1, 102):
             # 模板匹配
             match_result = defAll.template_all_search(handle, level_address[str(lv)])
-
+            if number == 102:
+                number == 1
             if match_result['is_found']:
-                defAll.click_imitate(handle, match_result['center_x'], match_result['center_y']+defAll.margin_top, wait_time)
+                defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top,
+                                     wait_time)
                 defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 选择按钮
                 defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 熔炼装备
+                number += 1
                 defAll.click_imitate(handle, 357, 488, 0.3)  # 点击 加
 
                 print('进入判断时间**********************')
@@ -73,8 +77,9 @@ if handle:
                 # time.sleep(0.6)
                 print('结束判断时间**********************')
             else:
-                print(lv, '星，找不到模板了，本星级测序结束，当前字典：', test_list)
+                print(lv, '星，', number, '次，找不到模板了，本星级测序结束，当前字典：', test_list)
                 break
+
             print('本次结束，当前次数:', number)
         print(lv, '星测序完成，字典：', test_list)
 
