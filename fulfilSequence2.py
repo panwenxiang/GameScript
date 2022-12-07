@@ -2,12 +2,11 @@ import cv2
 import defAll
 import copy
 
-# 填入测序数组，模板： sq_list = [1, 2, 8, 33]
+# 输入测序数组，模板： sq_list = [1, 2, 8, 33]
 sq_list_no_change = {
     '1': [10, 15],
     '2': [4, 10]
 }
-template_address = "img/template/3level/"
 # 输入窗口名
 handle = defAll.get_handle('大号')
 # 输入你要推序循环101的次数
