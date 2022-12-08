@@ -11,7 +11,7 @@ test_level = [5, 6]
 
 
 # 星级装备的地址字典
-level_address = defAll.level_test_addressaddress
+level_address = defAll.level_test_address
 # 公共等待时间
 wait_time = 0.5
 # 测试结果
