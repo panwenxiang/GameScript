@@ -46,9 +46,10 @@ sq_list_first = [1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 18, 19, 21, 24, 25, 2
 
 
 # 位置测试截图
-# hd = defAll.get_handle('大号')
-# screenshot = defAll.get_screenshot(hd)
-# defAll.test_lcation(hd, 350, 460)
+hd = defAll.get_handle('大号')
+screenshot = defAll.get_screenshot(hd)
+defAll.test_lcation(hd, 300, 960)
+
 # defAll.click_imitate(hd, 490, 684)
 # defAll.click_match_img_url(hd, 'img/system/back.png')
 #

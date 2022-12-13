@@ -24,6 +24,8 @@ if handle:
     for lv in test_level:
         test_list[str(lv)] = []
 
+    defAll.click_match_img_url(handle, 'img/system/armor.png', 1)  # 寻找点击熔炉
+    defAll.click_match_img_url(handle, 'img/system/up-armor.png', 0.2)  # 寻找点击熔炉
     defAll.click_match_img_url(handle, 'img/system/furnace.png', wait_time)  # 寻找点击熔炉
     defAll.click_imitate(handle, 357, 488, wait_time)  # 点击 加
 
