@@ -46,7 +46,7 @@ def fuse(level_list, number):
     for level in level_list:
         level_file_list.append(defAll.level_fulfil_address[str(level)])
 
-    match_result = defAll.template_all_search(handle, level_file_list, turn_pages)
+    match_result = defAll.template_all_search(handle, [level_file_list], turn_pages)
     if match_result['is_found']:
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
         defAll.click_match_img_url(handle, 'img/system/select.png')  # 点击 选择按钮

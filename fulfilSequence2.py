@@ -51,7 +51,7 @@ def fuse(fuse_level, fuse_sq_list):
         # 第一次进入，打开列表后先回到第一页
         for _ in range(10):
             defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
-    match_result = defAll.template_all_search(handle, level_address[str(fuse_level)])
+    match_result = defAll.template_all_search(handle, [level_address[str(fuse_level)]])
     after_level = fuse_level
     if match_result['is_found']:
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)

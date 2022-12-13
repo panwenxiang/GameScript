@@ -81,7 +81,7 @@ def test_lcation(handle, x, y):
 
 # 模板匹配，找到模板return，找不到点下一页就递归调用自身匹配，当没有下一页时return
 # 句柄， 模板img文件地址数组，  找不到点下一页还是上一页，1为下一页，0为上一页
-def template_all_search(handle, batch_import_path_list, turn_pages = 1):
+def template_all_search(handle, batch_import_path_list, turn_pages=1):
     img_bottom = get_screenshot(handle)
     # h, w = imgBottom.shape[:2]
     # imgr = imgBottom[int(h*0.5):int(h*0.8), 0:int(w)]

@@ -36,7 +36,7 @@ if handle:
 
         for count in range(1, 102):
             # 模板匹配
-            match_result = defAll.template_all_search(handle, level_address[str(lv)])
+            match_result = defAll.template_all_search(handle, [level_address[str(lv)]])
 
             if number == 102:
                 number = 1

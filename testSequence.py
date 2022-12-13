@@ -26,7 +26,7 @@ if handle:
 
     for number in range(1, 102):
         # 模板匹配
-        match_result = defAll.template_all_search(handle, template_address)
+        match_result = defAll.template_all_search(handle, [template_address])
         # time.sleep(2)
         if match_result['is_found']:
             defAll.click_imitate(handle, match_result['center_x'], match_result['center_y']+defAll.margin_top, wait_time)

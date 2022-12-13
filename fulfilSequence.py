@@ -39,7 +39,7 @@ def fuse():
         first = False
         for _ in range(10):
             defAll.click_imitate(handle, 40, 660, 0.1)  # 点击 左翻页
-    match_result = defAll.template_all_search(handle, template_address)
+    match_result = defAll.template_all_search(handle, [template_address])
     if match_result['is_found']:
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
         defAll.click_imitate(handle, 277, 684, 0.1)  # 点击 选择按钮
