@@ -15,15 +15,6 @@ sleep_next = 0.5
 
 
 # 不同星级对应的不同模板地址
-level_address = {
-    '1': 'img/template/1level/',
-    '2': 'img/template/2level/',
-    '3': 'img/template/3level/',
-    '4': 'img/template/4level/',
-    '5': 'img/template/5level/',
-    '6': 'img/template/6level/',
-}
-# 不同星级对应的不同模板地址
 level_test_address = {
     '1': 'img/template/test/1level/',
     '2': 'img/template/test/2level/',
@@ -89,7 +80,8 @@ def test_lcation(handle, x, y):
 
 
 # 模板匹配，找到模板return，找不到点下一页就递归调用自身匹配，当没有下一页时return
-def template_all_search(handle, batch_import_path):
+# 句柄， 模板img文件地址数组，  找不到点下一页还是上一页，1为下一页，0为上一页
+def template_all_search(handle, batch_import_path_list, turn_pages = 1):
     img_bottom = get_screenshot(handle)
     # h, w = imgBottom.shape[:2]
     # imgr = imgBottom[int(h*0.5):int(h*0.8), 0:int(w)]
@@ -99,8 +91,14 @@ def template_all_search(handle, batch_import_path):
     # batch_import_path = "img/imgTest/"
     # batch_import_path = "img/template/"
     is_found = False  # 是否找到了模板
-    for imgName in os.listdir(batch_import_path):
-        img_template_read = cv2.imread(batch_import_path + imgName)  # 读
+
+    all_img_url = []
+    for level_file_url in batch_import_path_list:
+        for img_url in os.listdir(level_file_url):
+            all_img_url.append(level_file_url + img_url)
+
+    for imgName in all_img_url:
+        img_template_read = cv2.imread(imgName)  # 读
         # img_template_read = cv2.cvtColor(img_template_read, cv2.COLOR_BGR2GRAY)  # 转灰度
 
         hh1, ww1 = img_template_read.shape[:2]
@@ -112,13 +110,13 @@ def template_all_search(handle, batch_import_path):
         print('公用所有模板匹配方法，', imgName, '最高匹配度:', match['max_val'])
         # print('  最高匹配度', int(match['max_val']))
 
-        if match['max_val'] > 92:
+        if match['max_val'] > 91:
             is_found = True
             # 加上截图距离top的距离margin_top
             # click_imitate(handle, match['center_x'], match['center_y'] + margin_top)
             data = {'is_found': True, 'max_val': match['max_val'], 'center_x': match['center_x'],
                     'center_y': match['center_y']}
-            print('公用所有模板匹配方法，', batch_import_path + imgName, '匹配到了模板,返回：', data)
+            print('公用所有模板匹配方法，', imgName, '匹配到了模板,返回：', data)
             return data
             #     match['center_point'][0] += 50
             #     print('22222匹配度超90%：', match['center_point'])
@@ -135,11 +133,14 @@ def template_all_search(handle, batch_import_path):
 
     # for循环匹配模板结束，没有找到模板点击下一页
     if not is_found:
-        img_template_read_next = cv2.imread('img/system/listNext.png')
+        if turn_pages:
+            img_template_read_next = cv2.imread('img/system/listNext.png')
+        else:
+            img_template_read_next = cv2.imread('img/system/listBack.png')
         match_next = match_template(img_bottom, img_template_read_next)
-        print('当前页没有匹配到模板')
+        print('翻页按钮：', turn_pages)
         if match_next['max_val'] > 90:
-            print('找到了下一页按钮，点击翻页，再次匹配模板')
+            print('找到了翻页按钮：', turn_pages, '，点击翻页，再次匹配模板')
             # cv2.imshow('66', img_bottom)
             # cv2.waitKey()
 
@@ -147,9 +148,9 @@ def template_all_search(handle, batch_import_path):
             # 翻页后等0.5秒才翻页好
             click_imitate(handle, match_next['center_x'], match_next['center_y'] + margin_top, sleep_next)
 
-            return template_all_search(handle, batch_import_path)
+            return template_all_search(handle, batch_import_path_list, turn_pages)
         else:
-            print('没有下一页了', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+            print('没有翻页按钮了', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
             return {'is_found': False}
 
 

@@ -7,59 +7,48 @@ import win32con, win32api
 import defAll
 from datetime import datetime
 
+# a = {'5': [4, 7, 19, 35, 45, 53, 58], '6': [65, 66, 74, 92, 97, 4, 7, 12, 19, 35, 45, 53, 58]}
+b = [1, 2, 3]
+# if 6 in b or 2 in b:
+#     print(888)
+# else:
+#     print(444)
 
+sq_list_no_change = {
+    '4': [10, 15],
+    '5': [4, 10]
+}
+print('2' in sq_list_no_change)
 
-a = {'5': [4, 7, 19, 35, 45, 53, 58], '6': [65, 66, 74, 92, 97, 4, 7, 12, 19, 35, 45, 53, 58]}
-print(11111, a)
-a.pop('5')
-# for i in a:
-#     a[i] = sorted(a[i])
-print(22222, a)
 
 
 # 图片对比测试
 # hd = defAll.get_handle('大号')
-# level = '6'
-# # address = defAll.level_address[level]
+# level = '2'
+# # address = defAll.level_test_address[level]
 # address = 'img/system/'
 # for url in os.listdir(address):
 #     template = cv2.imread(address + url)
 #     screenshot = defAll.get_screenshot(hd)
-#     screenshot = screenshot[480:800, 0:596]
+#     # screenshot = screenshot[480:800, 0:596]
 #     match = defAll.match_template(screenshot, template)
 #     print(url, match)
 
-    # if match['max_val'] > 90:
-    #     cv2.rectangle(screenshot, (match['center_x'], match['center_y']), (match['center_x'], match['center_y']), (0, 255, 0), 5)
-    #     cv2.imshow('awd', screenshot)
-    #     cv2.waitKey()
+# if match['max_val'] > 90:
+#     cv2.rectangle(screenshot, (match['center_x'], match['center_y']), (match['center_x'], match['center_y']), (0, 255, 0), 5)
+#     cv2.imshow('awd', screenshot)
+#     cv2.waitKey()
+
+
+sq_list_first = [1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 18, 19, 21, 24, 25, 27, 31, 32, 34, 36, 37, 38, 39, 42, 43,
+                 47, 52, 57, 59, 60, 61, 64, 67, 69, 71, 72, 76, 78, 80, 81, 82, 89, 91, 94, 95, 96, 98, 99, 100]
 
 
 
-
-sq_list_first = [1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 18, 19, 21, 24, 25, 27, 31, 32, 34, 36, 37, 38, 39, 42, 43, 47, 52, 57, 59, 60, 61, 64, 67, 69, 71, 72, 76, 78, 80, 81, 82, 89, 91, 94, 95, 96, 98, 99, 100]
-
-# print(len(sq_list_first))
-# print(51*10+1117)
-# 51
-# 1627
-# hdl = defAll.get_handle('大号')
-# defAll.click_imitate(hdl, 490, 684, 0.5)
-# print(test_list)
-
-
-# hd = defAll.get_handle('2233.avi')
-# print('句柄', hd)
-# screenshot = defAll.get_screenshot(hd)
-# need_url = 'img/fire-need/'
-# for item in os.listdir(need_url):
-#     template_img = cv2.imread(need_url + item)
-#     match_furnace2 = defAll.match_template(screenshot, template_img)
-#     print('匹配结果：', match_furnace2, '    ', datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
-
+# 位置测试截图
 # hd = defAll.get_handle('大号')
 # screenshot = defAll.get_screenshot(hd)
-# defAll.test_lcation(hd, 300, 400)
+# defAll.test_lcation(hd, 350, 460)
 # defAll.click_imitate(hd, 490, 684)
 # defAll.click_match_img_url(hd, 'img/system/back.png')
 #
