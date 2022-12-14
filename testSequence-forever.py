@@ -28,7 +28,8 @@ if handle:
 
     match_result = defAll.template_all_search(handle, [fire_url])
     if match_result['is_found']:
-        # 找到模板，点击
+        # 找到模板，点击0
+
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
 
         # 点击 选择按钮

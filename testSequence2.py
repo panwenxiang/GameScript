@@ -7,8 +7,7 @@ from datetime import datetime
 # 输入窗口名
 handle = defAll.get_handle('大号')
 # 输入你想要测的星级，例如：[1, 2, 3]，请确保文件夹里有图片
-test_level = [5, 6]
-
+test_level = [4,5,6]
 
 # 星级装备的地址字典
 level_address = defAll.level_test_address
@@ -24,8 +23,8 @@ if handle:
     for lv in test_level:
         test_list[str(lv)] = []
 
-    defAll.click_match_img_url(handle, 'img/system/armor.png', 1)  # 寻找点击熔炉
-    defAll.click_match_img_url(handle, 'img/system/up-armor.png', 0.2)  # 寻找点击熔炉
+    defAll.click_match_img_url(handle, 'img/system/armor.png', 1)  # 寻找铠甲
+    defAll.click_match_img_url(handle, 'img/system/up-armor.png', 0.2)  # 穿上铠甲
     defAll.click_match_img_url(handle, 'img/system/furnace.png', wait_time)  # 寻找点击熔炉
     defAll.click_imitate(handle, 357, 488, wait_time)  # 点击 加
 

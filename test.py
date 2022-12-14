@@ -20,7 +20,8 @@ sq_list_no_change = {
 }
 print('2' in sq_list_no_change)
 
-
+hhd = defAll.get_handle('大号')
+defAll.click_match_img_url(hhd, 'img/system/select.png')
 
 # 图片对比测试
 # hd = defAll.get_handle('大号')

@@ -6,11 +6,10 @@ import copy
 
 # 输入测序字典
 sq_list_no_change = {
-    '5': [5, 10, 15],
-    '6': [2, 5, 10, 15]
+    '4': [25, 32, 34, 35, 40], '5': [46, 47, 52, 54], '6': [67, 72, 75, 77, 82, 84]
 }
 # 输入你要填的星级装备，会去拿img/template/fulfil/星级level/ 的图片做匹配
-fill_list = [1, 2]
+fill_list = [1, 2, 3, 4, 5, 6]
 # 输入窗口名
 handle = defAll.get_handle('大号')
 # 输入你要推序循环101的次数
@@ -46,7 +45,7 @@ def fuse(level_list, number):
     for level in level_list:
         level_file_list.append(defAll.level_fulfil_address[str(level)])
 
-    match_result = defAll.template_all_search(handle, [level_file_list], turn_pages)
+    match_result = defAll.template_all_search(handle, level_file_list, turn_pages)
     if match_result['is_found']:
         defAll.click_imitate(handle, match_result['center_x'], match_result['center_y'] + defAll.margin_top, wait_time)
         defAll.click_match_img_url(handle, 'img/system/select.png')  # 点击 选择按钮
@@ -64,6 +63,7 @@ if handle:
     # 开始推序
     for i in range(0, cycles):
         for number in range(1, 102):
+            print("****************目前是第", number, "次推序****************")
             is_find = False
             # 判断当前步骤是否可以出日光，低星有则 break
             for level in sq_list_no_change:
