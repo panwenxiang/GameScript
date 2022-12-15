@@ -186,25 +186,59 @@ def click_imitate(handle, center_x, center_y, sleep_time=0):
     win32api.SendMessage(handle, win32con.WM_LBUTTONUP, 0, position)
     time.sleep(sleep_time)
 
+# 暂离，然后回迷宫
+def temporarily_part(handle):
+    click_imitate(handle, 40, 60, 0.5)  # 寻找暂离
+    click_imitate(handle, 250, 960, 4)  # 点击暂离
+    click_imitate(handle, 250, 660, 0.5)  # 点击确定
+    click_match_img_url(handle, 'img/system/return.png', 1, 1)
+    # click_imitate(handle, 400, 200, 0.5)  # 回迷宫
+    # click_imitate(handle, 470, 200, 0.5)  # 回迷宫
+
+
+# 断网，准备黑装备
 def close_net(handle):
     bottom_img = get_screenshot(handle)
     bottom_img = bottom_img[940:1020, 0:300]
     template_1 = cv2.imread('img/system/connected.png')
+    template_2 = cv2.imread('img/system/another_connected.png')
     match1 = match_template(bottom_img, template_1)
+    match2 = match_template(bottom_img, template_2)
     if match1['max_val'] > 90:
         print('网络已经关闭，不需要操作关闭了')
     else:
-        template_img = cv2.imread('img/system/not-connected.png')
-        match = match_template(bottom_img, template_img)
-        if match['max_val'] > 90:
-            click_imitate(handle, 490, 950, 0.1)
+        if match2['max_val'] > 90:
+            print('网络已经关闭，不需要操作关闭了')
         else:
-            print('找不到打开VPN，不能关闭网络！')
-            exit()
+            template_img = cv2.imread('img/system/not-connected.png')
+            match = match_template(bottom_img, template_img)
+            if match['max_val'] > 90:
+                click_imitate(handle, 490, 950, 0.1)
+            else:
+                print('找不到打开VPN，不能关闭网络！')
+                exit()
     # print(match, 55555555)
     # cv2.imshow('1', bottom_img)
     # cv2.imshow('3223', template_img)
     # cv2.waitKey()
+
+# 联网，准备登号
+def open_net(handle):
+    bottom_img = get_screenshot(handle)
+    bottom_img = bottom_img[940:1020, 0:300]
+    template_3 = cv2.imread('img/system/not-connected.png')
+    match3 = match_template(bottom_img, template_3)
+    if match3['max_val'] > 90:
+        print('网络已经连接，不需要操作联网了')
+    else:
+        template_img = cv2.imread('img/system/connected.png')
+        match = match_template(bottom_img, template_img)
+        if match['max_val'] > 90:
+            click_imitate(handle, 490, 950, 0.1)
+        else:
+            print('找不到关闭VPN，不能连接网络！')
+            exit()
+
 
 # 句柄，template url，匹配成功点击后等待时间，找不到是否终止程序-1终止 0不终止
 # 给图片url —> 截图 —> 匹配成功则点击，匹配失败无操作
