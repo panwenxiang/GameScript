@@ -4,8 +4,11 @@ import copy
 
 # 输入测序数组，模板： sq_list = [1, 2, 8, 33]
 sq_list_no_change = {
-    '1': [10, 15],
-    '2': [4, 10]
+    '1': [58, 97],
+    '2': [19, 58, 97],
+    '4': [92],
+    '5': [4, 7, 19, 35, 45, 53, 58],
+    '6': [4, 7, 12, 19, 35, 45, 53, 58, 65, 66, 74, 92, 97]
 }
 # 输入窗口名
 handle = defAll.get_handle('大号')
@@ -21,7 +24,7 @@ print('句柄', handle)
 level_address = defAll.level_fulfil_address
 npc_xy = {'x': 0, 'y': 0}
 furnace_xy = {'x': 0, 'y': 0}
-wait_time = 0.4
+wait_time = 0.6
 after_level = False
 
 

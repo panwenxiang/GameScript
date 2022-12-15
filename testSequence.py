@@ -6,7 +6,7 @@ from datetime import datetime
 wait_time = 0.5
 
 # 输入窗口名
-handle = defAll.get_handle('夜神模拟器')
+handle = defAll.get_handle('大号')
 # 输入需要测序的星级装备图片的文件夹地址
 template_address = "img/template/3level/"
 # 输入你想要
