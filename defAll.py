@@ -55,7 +55,7 @@ def set_window(handle, uFlags):
 def get_screenshot(handle, is_gray=None):
     if handle:
         # 打开窗口，不移动，设置大小
-        # set_window(handle, win32con.SWP_NOMOVE)
+        set_window(handle, win32con.SWP_NOMOVE)
 
         # Qt5截图
         app = QApplication(sys.argv)
@@ -187,9 +187,9 @@ def click_imitate(handle, center_x, center_y, sleep_time=0):
     time.sleep(sleep_time)
 
 
-# 句柄，template url，匹配成功点击后等待时间
+# 句柄，template url，匹配成功点击后等待时间，找不到是否终止程序-1终止 0不终止
 # 给图片url —> 截图 —> 匹配成功则点击，匹配失败无操作
-def click_match_img_url(handle, url, sleep_time=0):
+def click_match_img_url(handle, url, sleep_time=0, notIsExit=0):
     img_bottom = get_screenshot(handle)
     img_template = cv2.imread(url)
     match = match_template(img_bottom, img_template)
@@ -198,7 +198,8 @@ def click_match_img_url(handle, url, sleep_time=0):
         click_imitate(handle, match['center_x'], match['center_y'], sleep_time)
     else:
         print('没有找到：', url, '匹配度：', match['max_val'])
-
+        if notIsExit:
+            exit()
 # 窗口放到最上层
 # win32gui.SetWindowPos(handle, win32con.HWND_TOPMOST, 0, 0, 1200, 800, win32con.SWP_SHOWWINDOW)
 # 获取坐标

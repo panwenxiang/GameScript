@@ -20,11 +20,9 @@ sq_list_no_change = {
 }
 print('2' in sq_list_no_change)
 
-
-
 # 图片对比测试
 # hd = defAll.get_handle('大号')
-# level = '2'
+# level = '4'
 # # address = defAll.level_test_address[level]
 # address = 'img/system/'
 # for url in os.listdir(address):
@@ -43,14 +41,12 @@ print('2' in sq_list_no_change)
 sq_list_first = [1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 18, 19, 21, 24, 25, 27, 31, 32, 34, 36, 37, 38, 39, 42, 43,
                  47, 52, 57, 59, 60, 61, 64, 67, 69, 71, 72, 76, 78, 80, 81, 82, 89, 91, 94, 95, 96, 98, 99, 100]
 
-
-
 # 位置测试截图
 hd = defAll.get_handle('大号')
 screenshot = defAll.get_screenshot(hd)
-defAll.test_lcation(hd, 300, 960)
+defAll.test_lcation(hd, 350, 380)
 
-# defAll.click_imitate(hd, 490, 684)
+# defAll.click_imitate(hd, 580, 955)
 # defAll.click_match_img_url(hd, 'img/system/back.png')
 #
 # defAll.click_imitate(hd, 480, 950, 1)  # 点击右下角魔法书
@@ -66,44 +62,5 @@ handle = ''
 template_img_url = 'img/imgNeed/'
 
 # handle = int('000A07E4', 16)
-if handle:
-    for i in range(6):
-        bottom_img = defAll.get_screenshot(handle)
-        is_found = False
-        for item in os.listdir(template_img_url):
-            template_img = cv2.imread(template_img_url + item)
-            match = defAll.match_template(bottom_img, template_img)
-            if match['max_val'] > 80:
-                print(item, '******匹配成功：', match)
-                is_found = True
-                break
-            else:
-                print(item, '匹配低于80%：', match)
-            # defAll.click_match_img_url(handle, 'img/imgTest/'+item)
-        print('--------------------------------')
-        if is_found:
-            break
-        time.sleep(0.1)
+
 cv2.waitKey()
-# if handle:
-#     print('获取的句柄:', handle, hex(eval(str(handle))))
-#     img_b = defAll.get_screenshot(handle)
-#     imb_t = cv2.imread('img/system/listNext.png')
-#     a = defAll.match_template(img_b, imb_t)
-#     print(a)
-#     # x = 50
-#     # y = 50
-#     # defAll.test_lcation(handle, x, y)
-#     #
-#     # long_position = win32api.MAKELONG(x, y)  # 模拟鼠标指针 传送到指定坐标
-#     # # time.sleep(2)
-#     #
-#     # # 模拟鼠标按下
-#     # win32api.SendMessage(handle, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, long_position)
-#     # # win32api.SendMessage(hd, win32con.WM_MOUSEMOVE, win32con.MK_LBUTTON, long_position)
-#     # win32api.SendMessage(handle, win32con.WM_LBUTTONUP, 0, long_position)  # 模拟鼠标弹起
-
-
-# long_position = win32api.MAKELONG(cx, cy)  # 模拟鼠标指针 传送到指定坐标
-# win32api.SendMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, long_position)  # 模拟鼠标按下
-# win32api.SendMessage(hwnd, win32con.WM_LBUTTONUP, win32con.MK_LBUTTON, long_position)  # 模拟鼠标弹起
