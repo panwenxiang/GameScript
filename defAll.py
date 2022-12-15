@@ -186,6 +186,25 @@ def click_imitate(handle, center_x, center_y, sleep_time=0):
     win32api.SendMessage(handle, win32con.WM_LBUTTONUP, 0, position)
     time.sleep(sleep_time)
 
+def close_net(handle):
+    bottom_img = get_screenshot(handle)
+    bottom_img = bottom_img[940:1020, 0:300]
+    template_1 = cv2.imread('img/system/connected.png')
+    match1 = match_template(bottom_img, template_1)
+    if match1['max_val'] > 90:
+        print('网络已经关闭，不需要操作关闭了')
+    else:
+        template_img = cv2.imread('img/system/not-connected.png')
+        match = match_template(bottom_img, template_img)
+        if match['max_val'] > 90:
+            click_imitate(handle, 490, 950, 0.1)
+        else:
+            print('找不到打开VPN，不能关闭网络！')
+            exit()
+    # print(match, 55555555)
+    # cv2.imshow('1', bottom_img)
+    # cv2.imshow('3223', template_img)
+    # cv2.waitKey()
 
 # 句柄，template url，匹配成功点击后等待时间，找不到是否终止程序-1终止 0不终止
 # 给图片url —> 截图 —> 匹配成功则点击，匹配失败无操作

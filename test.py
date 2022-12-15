@@ -14,11 +14,8 @@ b = [1, 2, 3]
 # else:
 #     print(444)
 
-sq_list_no_change = {
-    '4': [10, 15],
-    '5': [4, 10]
-}
-print('2' in sq_list_no_change)
+# hd = defAll.get_handle('大号')
+# defAll.close_net(hd)
 
 # 图片对比测试
 # hd = defAll.get_handle('大号')
@@ -44,7 +41,7 @@ sq_list_first = [1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 18, 19, 21, 24, 25, 2
 # 位置测试截图
 hd = defAll.get_handle('大号')
 screenshot = defAll.get_screenshot(hd)
-defAll.test_lcation(hd, 350, 380)
+defAll.test_lcation(hd, 490, 950)
 
 # defAll.click_imitate(hd, 580, 955)
 # defAll.click_match_img_url(hd, 'img/system/back.png')

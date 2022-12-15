@@ -14,11 +14,10 @@ wait_time5 = 0.5
 
 if handle:
     defAll.click_imitate(handle, 580, 955, wait_time3)  # 点回到桌面
-    defAll.click_match_img_url(handle, 'img/system/system-set.png', wait_time3, 1)  # 点设置
-    defAll.click_match_img_url(handle, 'img/system/system-wifi.png', wait_time3)  # 点wifi
-    defAll.click_match_img_url(handle, 'img/system/system-wifi-click-close.png', wait_time3)  # 点关闭wifi
+    defAll.click_match_img_url(handle, 'img/system/system-set-net.png', 1, 1)  # 点设置断网软件
+    defAll.close_net(handle)  # 判断是否为断网状态，不是则断网
     defAll.click_imitate(handle, 580, 955, wait_time3)  # 点回到桌面
-    defAll.click_match_img_url(handle, 'img/system/system-game.png', wait_time3, 1)  # 点游戏
+    defAll.click_match_img_url(handle, 'img/system/system-game.png', 1, 1)  # 点游戏
     defAll.click_match_img_url(handle, 'img/system/down-stair.png', wait_time3, 1)  # 点下楼
 
     defAll.click_imitate(handle, 480, 950, wait_time5)  # 点击右下角魔法书
