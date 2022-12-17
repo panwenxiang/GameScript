@@ -1,3 +1,5 @@
+import time
+
 import win32api
 import win32con
 
@@ -24,18 +26,28 @@ if handle:
         defAll.click_match_img_url(handle, 'img/system/system-game.png', wait_time3, 'stop')  # 点游戏
         defAll.click_match_img_url(handle, 'img/system/down-stair.png', 1, 'no-stop', 0.3)  # 点下楼
 
-        defAll.click_match_img_url(handle, 'img/system/magic-book.png', wait_time5, 'no-stop', 0.2)  # 点击右下角魔法书
-        # defAll.click_imitate(handle, 480, 950, wait_time5)  # 点击右下角魔法书
+        # defAll.click_match_img_url(handle, 'img/system/magic-book.png', wait_time5, 'no-stop', 0.2)  # 点击右下角魔法书
+        match_door = defAll.loop_match_img_url(handle, 'img/system/door.png')  # 找到门说明已经下楼了，再去点魔法书
+        print(1111111111, match_door)
+        if match_door:
+            time.sleep(3)
+            print(2222222222, match_door)
+            defAll.click_imitate(handle, 480, 950, wait_time5)  # 点击右下角魔法书
+            print(33333333333, match_door)
+        else:
+            exit()
         defAll.click_imitate(handle, 500, 450, wait_time1)  # 点击土系
         defAll.click_imitate(handle, 340, 380, wait_time1)  # 点击地震术
         defAll.click_imitate(handle, 340, 380, 0.1)  # 点击使用地震术
         #
         defAll.click_match_img_url(handle, 'img/system/armor.png', wait_time5)  # 寻找铠甲
-        defAll.click_match_img_url(handle, 'img/system/up-armor.png', wait_time1)  # 穿上铠甲
+        defAll.click_match_img_url(handle, 'img/system/up-armor.png', wait_time5)  # 穿上铠甲
 
         match_armor = defAll.match_template_file(handle, 'img/top-armor-icon')  # 给文件夹寻找上方盔甲图标点击
         if match_armor['max_val'] > 90:
             defAll.click_imitate(handle, match_armor['center_x'], match_armor['center_y'], wait_time5)
+        else:
+            exit()
         defAll.click_imitate(handle, 448, 550, 0.2)  # 点击技能
         defAll.click_imitate(handle, 284, 648, 0.1)  # 点击施放技能按钮
         defAll.click_imitate(handle, 284, 648, 6)  # 点击使用技能

@@ -60,6 +60,5 @@ handle = defAll.get_handle('大号')
 # defAll.click_match_img_url(handle, 'img/system/magic-book.png', wait_time5, 'no-stop', 0.2)  # 点击右下角魔法书
 
 
-win32api.MessageBox(0, "**********************找到了需要的装备!********************", "提醒", win32con.MB_OK)
-
+defAll.click_imitate(handle, 480, 950, wait_time5)  # 点击右下角魔法书
 # cv2.waitKey()

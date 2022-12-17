@@ -215,6 +215,7 @@ def match_template_file(handle, file_src):
         match_m = match_template(bottom_img, template_img)
         if match_m['max_val'] > match['max_val']:
             match = match_m
+    print(file_src, '，模板匹配文件夹中所有模板图片，最大匹配度：', match)
     return match
 
 
@@ -284,9 +285,9 @@ def loop_match_img_url(handle, url, loop_time=0.5):
 # 给图片url —> 截图 —> 匹配成功则点击，匹配失败无操作
 def click_match_img_url(handle, url, sleep_time=0, notIsExit=0, loop_time=False):
     loop = True
-    img_bottom = get_screenshot(handle)
     img_template = cv2.imread(url)
     while loop_time or loop:
+        img_bottom = get_screenshot(handle)
         loop = False
         match = match_template(img_bottom, img_template)
         if match['max_val'] > 90:
