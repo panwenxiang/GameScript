@@ -13,7 +13,6 @@ from PyQt5.QtWidgets import QApplication
 margin_top = 480  # 模板匹配截图到顶部的距离
 sleep_next = 0.5
 
-
 # 不同星级对应的不同模板地址
 level_test_address = {
     '1': 'img/template/test/1level/',
@@ -82,6 +81,7 @@ def test_lcation(handle, x, y):
 # 模板匹配，找到模板return，找不到点下一页就递归调用自身匹配，当没有下一页时return
 # 句柄， 模板img文件地址数组，  找不到点下一页还是上一页，1为下一页，0为上一页
 def template_all_search(handle, batch_import_path_list, turn_pages=1):
+    print('1111111111', batch_import_path_list)
     img_bottom = get_screenshot(handle)
     # h, w = imgBottom.shape[:2]
     # imgr = imgBottom[int(h*0.5):int(h*0.8), 0:int(w)]
@@ -98,10 +98,11 @@ def template_all_search(handle, batch_import_path_list, turn_pages=1):
             all_img_url.append(level_file_url + img_url)
 
     for imgName in all_img_url:
+        print('22222222', imgName)
         img_template_read = cv2.imread(imgName)  # 读
         # img_template_read = cv2.cvtColor(img_template_read, cv2.COLOR_BGR2GRAY)  # 转灰度
-
-        hh1, ww1 = img_template_read.shape[:2]
+        #
+        # hh1, ww1 = img_template_read.shape[:2]
 
         # 模板匹配
         match = match_template(img_bottom, img_template_read)
@@ -110,7 +111,7 @@ def template_all_search(handle, batch_import_path_list, turn_pages=1):
         print('公用所有模板匹配方法，', imgName, '最高匹配度:', match['max_val'])
         # print('  最高匹配度', int(match['max_val']))
 
-        if match['max_val'] > 91:
+        if match['max_val'] > 90:
             is_found = True
             # 加上截图距离top的距离margin_top
             # click_imitate(handle, match['center_x'], match['center_y'] + margin_top)
@@ -186,73 +187,118 @@ def click_imitate(handle, center_x, center_y, sleep_time=0):
     win32api.SendMessage(handle, win32con.WM_LBUTTONUP, 0, position)
     time.sleep(sleep_time)
 
+
 # 暂离，然后回迷宫
 def temporarily_part(handle):
     click_imitate(handle, 40, 60, 0.5)  # 寻找暂离
     click_imitate(handle, 250, 960, 4)  # 点击暂离
-    click_imitate(handle, 250, 660, 0.5)  # 点击确定
-    click_match_img_url(handle, 'img/system/return.png', 1, 1)
+    click_match_img_url(handle, 'img/system/ok.png', 0.1)  # 点击确定
+
+    bottom_img = get_screenshot(handle)
+    back_maze = 'img/back-maze'
+    for url in os.listdir(back_maze):
+        template_img = cv2.imread(back_maze + '/' + url)
+        match = match_template(bottom_img, template_img)
+        if match['max_val'] > 85:
+            click_imitate(handle, match['center_x'], match['center_y'], 7)
+            break
     # click_imitate(handle, 400, 200, 0.5)  # 回迷宫
     # click_imitate(handle, 470, 200, 0.5)  # 回迷宫
 
 
+# 模板匹配文件夹中所有模板图片，给出最大匹配值与其坐标
+def match_template_file(handle, file_src):
+    bottom_img = get_screenshot(handle)
+    match = {'max_val': 0}
+    for url in os.listdir(file_src):
+        template_img = cv2.imread(file_src + '/' + url)
+        match_m = match_template(bottom_img, template_img)
+        if match_m['max_val'] > match['max_val']:
+            match = match_m
+    return match
+
+
 # 断网，准备黑装备
 def close_net(handle):
+    is_open_vpn = False
     bottom_img = get_screenshot(handle)
-    bottom_img = bottom_img[940:1020, 0:300]
-    template_1 = cv2.imread('img/system/connected.png')
-    template_2 = cv2.imread('img/system/another_connected.png')
-    match1 = match_template(bottom_img, template_1)
-    match2 = match_template(bottom_img, template_2)
-    if match1['max_val'] > 90:
-        print('网络已经关闭，不需要操作关闭了')
-    else:
-        if match2['max_val'] > 90:
-            print('网络已经关闭，不需要操作关闭了')
-        else:
-            template_img = cv2.imread('img/system/not-connected.png')
-            match = match_template(bottom_img, template_img)
-            if match['max_val'] > 90:
-                click_imitate(handle, 490, 950, 0.1)
-            else:
-                print('找不到打开VPN，不能关闭网络！')
-                exit()
-    # print(match, 55555555)
-    # cv2.imshow('1', bottom_img)
-    # cv2.imshow('3223', template_img)
-    # cv2.waitKey()
+    bottom_img = bottom_img[940:1020, 0:400]
+    # 先判断是否已经打开VPN
+    template = ['img/system/connected-1.png', 'img/system/connected-2.png']
+    for template_url in template:
+        template_img = cv2.imread(template_url)
+        match = match_template(bottom_img, template_img)
+        if match['max_val'] > 90:
+            is_open_vpn = True
+            print('VPN已经打开,匹配度：', match['max_val'], '图片url:', template_url)
+            break
+    # 如果没有打开，则去点击，打开
+    if not is_open_vpn:
+        print('打开了VPN')
+        click_imitate(handle, 490, 950, 0.1)
+
 
 # 联网，准备登号
 def open_net(handle):
+    is_close_vpn = False
     bottom_img = get_screenshot(handle)
-    bottom_img = bottom_img[940:1020, 0:300]
-    template_3 = cv2.imread('img/system/not-connected.png')
-    match3 = match_template(bottom_img, template_3)
-    if match3['max_val'] > 90:
-        print('网络已经连接，不需要操作联网了')
-    else:
-        template_img = cv2.imread('img/system/connected.png')
+    bottom_img = bottom_img[940:1020, 0:400]
+    # 先判断是否已经关闭VPN
+    template = ['img/system/not-connected-1.png', 'img/system/not-connected-2.png']
+    for template_url in template:
+        template_img = cv2.imread(template_url)
         match = match_template(bottom_img, template_img)
         if match['max_val'] > 90:
-            click_imitate(handle, 490, 950, 0.1)
+            is_close_vpn = True
+            print('VPN已经关闭,匹配度：', match['max_val'], '图片url:', template_url)
+            break
+    # 如果没有关闭，则去点击，关闭
+    if not is_close_vpn:
+        print('关闭了VPN')
+        click_imitate(handle, 490, 950, 0.1)
+
+# 循环匹配模板，最长20秒，匹配到则返回
+def loop_match_img_url(handle, url, loop_time=0.5):
+    loop = True
+    wait_time = 0
+    img_template = cv2.imread(url)
+    while loop:
+        img_bottom = get_screenshot(handle)
+        match = match_template(img_bottom, img_template)
+        if match['max_val'] > 90:
+            print(url, '循环匹配已找到，匹配度：', match['max_val'])
+            loop = False
+            return True
         else:
-            print('找不到关闭VPN，不能连接网络！')
-            exit()
+            print('循环匹配方法找不到', url, '继续匹配')
+            time.sleep(loop_time)
+            if wait_time >= 20:
+                print('循环匹配方法找了20秒找不到', url)
+                return False
+        wait_time += loop_time
 
 
-# 句柄，template url，匹配成功点击后等待时间，找不到是否终止程序-1终止 0不终止
+
+# 参数：1句柄，2template url，3匹配成功点击后等待时间，4找不到是否终止程序-'stop'终止 0不终止,
+# 参数：5 间隔多少秒循环匹配一次，默认不循环，使用这个变量的前提是第4个变量不能是stop，否则会在第一次匹配不到时直接停止所有程序
 # 给图片url —> 截图 —> 匹配成功则点击，匹配失败无操作
-def click_match_img_url(handle, url, sleep_time=0, notIsExit=0):
+def click_match_img_url(handle, url, sleep_time=0, notIsExit=0, loop_time=False):
+    loop = True
     img_bottom = get_screenshot(handle)
     img_template = cv2.imread(url)
-    match = match_template(img_bottom, img_template)
-    if match['max_val'] > 90:
-        print(url, '给图片url匹配，点击，匹配度：', match['max_val'])
-        click_imitate(handle, match['center_x'], match['center_y'], sleep_time)
-    else:
-        print('没有找到：', url, '匹配度：', match['max_val'])
-        if notIsExit:
-            exit()
+    while loop_time or loop:
+        loop = False
+        match = match_template(img_bottom, img_template)
+        if match['max_val'] > 90:
+            print(url, '给图片url匹配，点击，匹配度：', match['max_val'])
+            click_imitate(handle, match['center_x'], match['center_y'], sleep_time)
+            loop_time = False
+        else:
+            print('没有找到：', url, '匹配度：', match['max_val'])
+            if notIsExit == 'stop':
+                exit()
+        time.sleep(loop_time)
+        print('给图片url方法，等待了', loop_time, '秒继续匹配')
 # 窗口放到最上层
 # win32gui.SetWindowPos(handle, win32con.HWND_TOPMOST, 0, 0, 1200, 800, win32con.SWP_SHOWWINDOW)
 # 获取坐标
