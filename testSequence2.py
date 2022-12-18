@@ -2,12 +2,14 @@ import time
 import os
 import defAll
 import cv2
+import win32con
+import win32api
 from datetime import datetime
 
 # 输入窗口名
-handle = defAll.get_handle('大号')
+handle = defAll.get_handle('小号')
 # 输入你想要测的星级，例如：[1, 2, 3]，请确保文件夹里有图片
-test_level = [4,5,6]
+test_level = [3]
 
 # 星级装备的地址字典
 level_address = defAll.level_test_address
@@ -86,6 +88,8 @@ if handle:
         for i in test_list:
             test_list[i] = sorted(test_list[i])
         print(lv, '星测序完成，字典：', test_list)
+        win32api.MessageBox(0, "**********************测序已完成!********************", "提醒", win32con.MB_OK)
+
 
 else:
     print('没找到句柄：', handle)

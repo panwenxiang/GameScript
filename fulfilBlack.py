@@ -11,12 +11,13 @@ import defAll
 need = [0, 0, 0, 0]
 
 # 输入窗口名
-handle = defAll.get_handle('大号')
+handle = defAll.get_handle('小号')
 wait_time1 = 0.1
 wait_time3 = 0.3
 wait_time5 = 0.5
 if handle:
     for _ in range(101):
+        print('**********这是第', _+1, '次黑装备**********')
         defAll.temporarily_part(handle)  # 暂离，然后回迷宫
 
         defAll.click_imitate(handle, 580, 955, wait_time3)  # 点回到桌面
@@ -28,16 +29,15 @@ if handle:
 
         # defAll.click_match_img_url(handle, 'img/system/magic-book.png', wait_time5, 'no-stop', 0.2)  # 点击右下角魔法书
         match_door = defAll.loop_match_img_url(handle, 'img/system/door.png')  # 找到门说明已经下楼了，再去点魔法书
-        print(1111111111, match_door)
+
         if match_door:
             time.sleep(3)
-            print(2222222222, match_door)
-            defAll.click_imitate(handle, 480, 950, wait_time5)  # 点击右下角魔法书
-            print(33333333333, match_door)
+            defAll.click_imitate(handle, 480, 950, wait_time5)  # 点击右下角魔法书, match_door)
         else:
             exit()
         defAll.click_imitate(handle, 500, 450, wait_time1)  # 点击土系
-        defAll.click_imitate(handle, 340, 380, wait_time1)  # 点击地震术
+        # defAll.click_imitate(handle, 340, 380, wait_time1)  # 点击地震术
+        defAll.click_match_img_url(handle, 'img/system/seismology.png', 1, 'stop')  # 点设置断网软件
         defAll.click_imitate(handle, 340, 380, 0.1)  # 点击使用地震术
         #
         defAll.click_match_img_url(handle, 'img/system/armor.png', wait_time5)  # 寻找铠甲

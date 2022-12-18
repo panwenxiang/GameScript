@@ -81,7 +81,7 @@ def test_lcation(handle, x, y):
 # 模板匹配，找到模板return，找不到点下一页就递归调用自身匹配，当没有下一页时return
 # 句柄， 模板img文件地址数组，  找不到点下一页还是上一页，1为下一页，0为上一页
 def template_all_search(handle, batch_import_path_list, turn_pages=1):
-    print('1111111111', batch_import_path_list)
+    print('对照路径为：', batch_import_path_list)
     img_bottom = get_screenshot(handle)
     # h, w = imgBottom.shape[:2]
     # imgr = imgBottom[int(h*0.5):int(h*0.8), 0:int(w)]
@@ -98,7 +98,7 @@ def template_all_search(handle, batch_import_path_list, turn_pages=1):
             all_img_url.append(level_file_url + img_url)
 
     for imgName in all_img_url:
-        print('22222222', imgName)
+        print('对照的图片为：', imgName)
         img_template_read = cv2.imread(imgName)  # 读
         # img_template_read = cv2.cvtColor(img_template_read, cv2.COLOR_BGR2GRAY)  # 转灰度
         #
