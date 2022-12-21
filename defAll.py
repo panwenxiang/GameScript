@@ -3,6 +3,7 @@ import sys
 import time
 from datetime import datetime
 
+from playsound import playsound
 import cv2
 import qimage2ndarray
 import win32api
@@ -44,6 +45,10 @@ def get_handle(name):
         return handle
 
 
+# 播放声音
+def play_sound():
+    playsound('public/y808.mp3')
+
 # 设置位置与z顺序
 def set_window(handle, uFlags):
     win32gui.SetWindowPos(handle, win32con.HWND_TOP, 0, 0, 596, 1020, uFlags)
@@ -76,6 +81,8 @@ def test_lcation(handle, x, y):
     cv2.rectangle(img, (x, y), (x + 10, y + 10), (0, 255, 0), 2)
     cv2.imshow('test', img)
     cv2.waitKey(0)
+
+
 
 
 # 模板匹配，找到模板return，找不到点下一页就递归调用自身匹配，当没有下一页时return

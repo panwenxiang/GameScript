@@ -6,10 +6,10 @@ import copy
 
 # 输入测序字典
 sq_list_no_change = {
-    '4': [25, 32, 34, 35, 40], '5': [46, 47, 52, 54], '6': [67, 72, 75, 77, 82, 84]
+    '3': [6, 7, 8, 38, 39, 56, 58, 68, 73, 79, 80, 92]
 }
 # 输入你要填的星级装备，会去拿img/template/fulfil/星级level/ 的图片做匹配
-fill_list = [1, 2, 3, 4, 5, 6]
+fill_list = [1, 2, 3]
 # 输入窗口名
 handle = defAll.get_handle('大号')
 # 输入你要推序循环101的次数
@@ -74,6 +74,7 @@ if handle:
                     break
             if not is_find:
                 fuse(fill_list, number)
+        defAll.play_sound()  # 提示音效
 
 
 else:

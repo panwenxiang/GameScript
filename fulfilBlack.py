@@ -11,7 +11,7 @@ import defAll
 need = [0, 0, 0, 0]
 
 # 输入窗口名
-handle = defAll.get_handle('小号')
+handle = defAll.get_handle('大号')
 wait_time1 = 0.1
 wait_time3 = 0.3
 wait_time5 = 0.5
@@ -93,6 +93,7 @@ if handle:
             defAll.click_imitate(handle, 220, 600, wait_time3)  # 点继续冒险
 
             find_magic = defAll.loop_match_img_url(handle, 'img/system/magic-book.png')
+            defAll.play_sound()  # 提示音效
             if not find_magic:
                 exit()
 

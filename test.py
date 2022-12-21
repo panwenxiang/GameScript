@@ -50,8 +50,17 @@ handle = defAll.get_handle('大号')
 # bottom_img = defAll.get_screenshot(handle)
 # # bottom_img = bottom_img[940:1020, 0:400]
 # defAll.test_lcation(handle, 220, 600)
+test_list = {
+    '2': [1, 2, 3, 4]
+}
+for i in test_list:
+    test_list[i] = sorted(test_list[i])
+print('星测序完成，字典：', test_list, '共有', len(test_list[i]), '个日光')
 
-
+defAll.play_sound()
+time.sleep(0.3)
+print('停了')
+exit()
 # # cv2.imshow('12', bottom_img)
 # defAll.loop_match_img_url(handle, 'img/system/ok.png')
 
