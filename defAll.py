@@ -49,6 +49,7 @@ def get_handle(name):
 def play_sound():
     playsound('public/y808.mp3')
 
+
 # 设置位置与z顺序
 def set_window(handle, uFlags):
     win32gui.SetWindowPos(handle, win32con.HWND_TOP, 0, 0, 596, 1020, uFlags)
@@ -83,8 +84,6 @@ def test_lcation(handle, x, y):
     cv2.waitKey(0)
 
 
-
-
 # 模板匹配，找到模板return，找不到点下一页就递归调用自身匹配，当没有下一页时return
 # 句柄， 模板img文件地址数组，  找不到点下一页还是上一页，1为下一页，0为上一页
 def template_all_search(handle, batch_import_path_list, turn_pages=1):
@@ -105,7 +104,7 @@ def template_all_search(handle, batch_import_path_list, turn_pages=1):
             all_img_url.append(level_file_url + img_url)
 
     for imgName in all_img_url:
-        print('对照的图片为：', imgName)
+        # print('对照的图片为：', imgName)
         img_template_read = cv2.imread(imgName)  # 读
         # img_template_read = cv2.cvtColor(img_template_read, cv2.COLOR_BGR2GRAY)  # 转灰度
         #
@@ -115,7 +114,7 @@ def template_all_search(handle, batch_import_path_list, turn_pages=1):
         match = match_template(img_bottom, img_template_read)
         # match = cv2.matchTemplate(img_bottom_gray, imgTemplateRead, cv2.TM_CCOEFF_NORMED)
         # cv2.imshow('2', scaledTemplateImg)
-        print('公用所有模板匹配方法，', imgName, '最高匹配度:', match['max_val'])
+        # print('公用所有模板匹配方法，', imgName, '最高匹配度:', match['max_val'])
         # print('  最高匹配度', int(match['max_val']))
 
         if match['max_val'] > 90:
@@ -265,6 +264,7 @@ def open_net(handle):
         print('关闭了VPN')
         click_imitate(handle, 490, 950, 0.1)
 
+
 # 循环匹配模板，最长20秒，匹配到则返回
 def loop_match_img_url(handle, url, loop_time=0.5):
     loop = True
@@ -278,13 +278,12 @@ def loop_match_img_url(handle, url, loop_time=0.5):
             loop = False
             return True
         else:
-            print('循环匹配方法找不到', url, '继续匹配')
+            # print('循环匹配方法找不到', url, '继续匹配')
             time.sleep(loop_time)
             if wait_time >= 20:
                 print('循环匹配方法找了20秒找不到', url)
                 return False
         wait_time += loop_time
-
 
 
 # 参数：1句柄，2template url，3匹配成功点击后等待时间，4找不到是否终止程序-'stop'终止 0不终止,
@@ -302,7 +301,7 @@ def click_match_img_url(handle, url, sleep_time=0, notIsExit=0, loop_time=False)
             click_imitate(handle, match['center_x'], match['center_y'], sleep_time)
             loop_time = False
         else:
-            print('没有找到：', url, '匹配度：', match['max_val'])
+            # print('没有找到：', url, '匹配度：', match['max_val'])
             if notIsExit == 'stop':
                 exit()
         time.sleep(loop_time)
