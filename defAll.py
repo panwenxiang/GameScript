@@ -306,6 +306,28 @@ def click_match_img_url(handle, url, sleep_time=0, notIsExit=0, loop_time=False)
                 exit()
         time.sleep(loop_time)
         print('给图片url方法，等待了', loop_time, '秒继续匹配')
+
+# 目前这个方法最多找40秒，40秒找不到就终止所有程序
+def loop_find(handle, url, loop_time=0.1):
+    print('开始循环找', url)
+    stop_time = 0
+    find = False
+    img_template = cv2.imread(url)
+    while not find:
+        img_bottom = get_screenshot(handle)
+        match = match_template(img_bottom, img_template)
+        if match['max_val'] > 90:
+            print(url, '，循环找图方法-********找到图片********，匹配度：', match)
+            find = True
+            return match
+        else:
+            print(url, '，循环找图方法-没找到，匹配度：', match, '，找了:', stop_time, '秒')
+            if stop_time > 40:
+                print('找了40秒没找到，终止程序')
+                exit()
+        stop_time += loop_time
+        time.sleep(loop_time)
+
 # 窗口放到最上层
 # win32gui.SetWindowPos(handle, win32con.HWND_TOPMOST, 0, 0, 1200, 800, win32con.SWP_SHOWWINDOW)
 # 获取坐标

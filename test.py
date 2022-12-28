@@ -46,21 +46,21 @@ sq_list_first = [1, 2, 3, 4, 5, 8, 10, 11, 12, 13, 14, 16, 18, 19, 21, 24, 25, 2
                  47, 52, 57, 59, 60, 61, 64, 67, 69, 71, 72, 76, 78, 80, 81, 82, 89, 91, 94, 95, 96, 98, 99, 100]
 
 # 位置测试截图
-handle = defAll.get_handle('大号')
+# handle = defAll.get_handle('大号')
 # bottom_img = defAll.get_screenshot(handle)
 # # bottom_img = bottom_img[940:1020, 0:400]
 # defAll.test_lcation(handle, 220, 600)
-test_list = {
-    '2': [1, 2, 3, 4]
-}
-for i in test_list:
-    test_list[i] = sorted(test_list[i])
-print('星测序完成，字典：', test_list, '共有', len(test_list[i]), '个日光')
-
-defAll.play_sound()
-time.sleep(0.3)
-print('停了')
-exit()
+# test_list = {
+#     '2': [1, 2, 3, 4]
+# }
+# for i in test_list:
+#     test_list[i] = sorted(test_list[i])
+# print('星测序完成，字典：', test_list, '共有', len(test_list[i]), '个日光')
+#
+# defAll.play_sound()
+# time.sleep(0.3)
+# print('停了')
+# exit()
 # # cv2.imshow('12', bottom_img)
 # defAll.loop_match_img_url(handle, 'img/system/ok.png')
 
@@ -69,5 +69,7 @@ exit()
 # defAll.click_match_img_url(handle, 'img/system/magic-book.png', wait_time5, 'no-stop', 0.2)  # 点击右下角魔法书
 
 
-defAll.click_imitate(handle, 480, 950, wait_time5)  # 点击右下角魔法书
+handle = defAll.get_handle('大号')
+defAll.loop_find(handle, 'img/system/startGame.png')
+# defAll.click_imitate(handle, 480, 950, wait_time5)  # 点击右下角魔法书
 # cv2.waitKey()

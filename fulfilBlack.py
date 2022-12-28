@@ -17,7 +17,7 @@ wait_time3 = 0.3
 wait_time5 = 0.5
 if handle:
     for _ in range(101):
-        print('**********这是第', _+1, '次黑装备**********')
+        print('**********这是第', _ + 1, '次黑装备**********')
         defAll.temporarily_part(handle)  # 暂离，然后回迷宫
 
         defAll.click_imitate(handle, 580, 955, wait_time3)  # 点回到桌面
@@ -70,7 +70,7 @@ if handle:
                 need_img_file_list.append('img/need_click_goods/need/' + str(index + 1) + '/')
         match_need = defAll.template_all_search(handle, need_img_file_list, 0)
         if match_need['is_found'] and match_need['max_val'] > 90:
-            print('找到了需要的装备',)
+            print('找到了需要的装备', )
             defAll.play_sound()  # 提示音效
             win32api.MessageBox(0, "**********************找到了需要的装备!********************", "提醒", win32con.MB_OK)
             break
@@ -79,6 +79,10 @@ if handle:
             defAll.click_imitate(handle, 500, 80, wait_time3)  # 点击右上角设置
             defAll.click_imitate(handle, 220, 450, wait_time5)  # 点击账号信息
             defAll.click_imitate(handle, 100, 960, 8)  # 点左下角登出
+
+            # 找到开始游戏后才继续下一步，否则会停止程序
+            defAll.loop_find(handle, 'img/system/startGame.png')
+
             defAll.click_imitate(handle, 580, 955, wait_time3)  # 点回到桌面
             defAll.click_match_img_url(handle, 'img/system/system-set-net.png', 1, 'stop')  # 点设置断网软件
             defAll.open_net(handle)  # 点关闭VPN
