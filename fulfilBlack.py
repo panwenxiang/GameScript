@@ -7,8 +7,8 @@ import defAll
 
 # 请确保设置和游戏在桌面，确保使用雷霆账号登录时记录中只有一个账号密码
 
-# 输入你需要的装备，[护腕,头盔,衣服,蓝球]，0是没有 需要黑，1是你的列表里已经有了不需要黑
-need = [0, 0, 0, 0]
+# 输入你需要的装备，[腕轮,王冠,披风,蓝球]，0是没有 需要黑，1是你的列表里已经有了不需要黑
+need = [0, 1, 1, 1]
 
 # 输入窗口名
 handle = defAll.get_handle('大号')
@@ -37,11 +37,11 @@ if handle:
             exit()
         defAll.click_imitate(handle, 500, 450, wait_time1)  # 点击土系
         # defAll.click_imitate(handle, 340, 380, wait_time1)  # 点击地震术
-        defAll.click_match_img_url(handle, 'img/system/seismology.png', 1, 'stop')  # 点设置断网软件
-        defAll.click_imitate(handle, 340, 380, 0.1)  # 点击使用地震术
+        defAll.click_match_img_url(handle, 'img/system/seismology.png', 1, 'stop')  # 点击地震术
+        defAll.click_imitate(handle, 340, 380, 0.3)  # 点击使用地震术
         #
-        defAll.click_match_img_url(handle, 'img/system/armor.png', wait_time5)  # 寻找铠甲
-        defAll.click_match_img_url(handle, 'img/system/up-armor.png', wait_time5)  # 穿上铠甲
+        defAll.click_match_img_url(handle, 'img/system/armor.png', 1)  # 寻找铠甲
+        defAll.click_match_img_url(handle, 'img/system/up-armor.png', 1)  # 穿上铠甲
 
         match_armor = defAll.match_template_file(handle, 'img/top-armor-icon')  # 给文件夹寻找上方盔甲图标点击
         if match_armor['max_val'] > 90:
@@ -71,6 +71,7 @@ if handle:
         match_need = defAll.template_all_search(handle, need_img_file_list, 0)
         if match_need['is_found'] and match_need['max_val'] > 90:
             print('找到了需要的装备',)
+            defAll.play_sound()  # 提示音效
             win32api.MessageBox(0, "**********************找到了需要的装备!********************", "提醒", win32con.MB_OK)
             break
         else:
@@ -93,7 +94,6 @@ if handle:
             defAll.click_imitate(handle, 220, 600, wait_time3)  # 点继续冒险
 
             find_magic = defAll.loop_match_img_url(handle, 'img/system/magic-book.png')
-            defAll.play_sound()  # 提示音效
             if not find_magic:
                 exit()
 
